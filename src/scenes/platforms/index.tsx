@@ -5,15 +5,15 @@ import { Cards } from '@/components/card'
 
 // Platforms list component
 export function Platforms() {
-    const [platforms, _] = useState<Platform[]>(() => fetchPlatforms())
+  const [platforms, _] = useState<Platform[]>(() => fetchPlatforms())
 
-    const items: CardItem[] = platforms.map((platform) => {
-        return {
-            path: `/platforms/${platform.id}`,
-            element: platform,
-        }
-    })
+  const items: CardItem[] = platforms.map((platform) => {
+    return {
+      path: `/platforms/${platform.id}`,
+      element: platform,
+    }
+  })
 
-    // TODO: Add image to the platform page
-    return <Cards items={items} />
+  // TODO: Add image to the platform page
+  return <Cards items={items} />
 }
