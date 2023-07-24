@@ -5,14 +5,14 @@ import { useParams } from 'react-router-dom'
 
 // Templates retrieve component
 export function Templates() {
-    const { platformId } = useParams<string>()
-    const templates: Template[] = fetchTemplates(Number(platformId))
-    const items: CardItem[] = templates.map((template) => {
-        return {
-            path: `/templates/${template.id}`,
-            element: template,
-        }
-    })
+  const { platformId } = useParams<string>()
+  const templates: Template[] = fetchTemplates(Number(platformId))
+  const items: CardItem[] = templates.map((template) => {
+    return {
+      path: `/templates/${template.id}`,
+      element: template,
+    }
+  })
 
-    return <Cards items={items} />
+  return <Cards items={items} />
 }
