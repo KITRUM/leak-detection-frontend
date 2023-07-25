@@ -3,11 +3,12 @@ import Navbar from '@/scenes/navbar'
 import Dashboard from '@/scenes/dashboard'
 import StatusBar from '@/scenes/statusBar'
 import About from '@/scenes/about'
-import { Templates } from './scenes/templates'
-import { Platforms } from '@/scenes/platforms'
-import { Sensors, Sensor } from '@/scenes/sensors'
+import Templates from '@/scenes/templates'
+import Platforms from '@/scenes/platforms'
+import Sensors from '@/scenes/sensors'
 import Chart from 'chart.js/auto'
 import { CategoryScale } from 'chart.js'
+import Sensor from "@/components/Sensor/Sensor";
 
 // Required by chart.js
 Chart.register(CategoryScale)

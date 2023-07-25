@@ -1,11 +1,4 @@
 // The basic Card item contracttypes
-export type CardItem = {
-  path: string
-  element: {
-    id: number
-    name: string
-  }
-}
 
 export type Platform = {
   id: number
