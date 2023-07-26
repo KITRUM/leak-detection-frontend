@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { HomeIcon, MapIcon, GiftIcon } from '@heroicons/react/20/solid'
 
-export default function NavBar() {
+const NavBar = () => {
   const iconStyles = 'w-6 h-6'
   const linkStyles = 'mx-auto flex hover:text-blue-800'
 
@@ -22,3 +22,5 @@ export default function NavBar() {
     </div>
   )
 }
+
+export default NavBar;

@@ -1,0 +1,22 @@
+export const initialValues = {
+  name: '',
+  angleFromNorth: '',
+  internalVolume: '',
+  height: '',
+  length: '',
+  width: '',
+  porosityFore: '',
+  porosityAft: '',
+  porosityPort: '',
+  porosityStarboard: '',
+  wallAreaFore: '',
+  wallAreaAft: '',
+  wallAreaPort: '',
+  wallAreaStarboard: '',
+  inclinationFore: '',
+  inclinationAft: '',
+  inclinationPort: '',
+  inclinationStarboard: '',
+  wavesFile: '',
+  currentsFile: ''
+}
