@@ -33,8 +33,11 @@ const Sensor = () => {
         data: anomalyDetections.map((data) => data.timeSeriesData.ppmv),
         backgroundColor: anomalyDetections.map((element: AnomalyDetection) => {
           // NOTE: Might be a good idea using enums
+
           // eslint-disable-next-line prefer-const
           let result: string =
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-ignore
             AnomalyDeviationColorMapping[element.value.toUpperCase()];
 
           // eslint-disable-next-line no-console
