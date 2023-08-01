@@ -8,9 +8,9 @@
     "build": "tsc && vite build",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "format": "prettier --write .",
+    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
     "precommit": "lint-staged",
-    "prettier": "prettier --check ."
+    "prettier": "prettier --check '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,scss,md}": [
