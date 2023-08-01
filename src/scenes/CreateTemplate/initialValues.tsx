@@ -1,5 +1,5 @@
 export const initialValues = {
-  name: '',
+  name: "",
   angleFromNorth: 0,
   internalVolume: 0,
   height: 0,
@@ -17,6 +17,6 @@ export const initialValues = {
   inclinationAft: 0,
   inclinationPort: 0,
   inclinationStarboard: 0,
-  wavesFile: '',
-  currentsFile: ''
-}
+  wavesFile: "",
+  currentsFile: "",
+};

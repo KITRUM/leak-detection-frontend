@@ -1,21 +1,21 @@
-import { Route, Routes } from 'react-router-dom'
-import Navbar from '@/scenes/navbar'
-import Dashboard from '@/scenes/dashboard'
-import About from '@/scenes/about'
-import Templates from '@/scenes/templates'
-import Platforms from '@/scenes/platforms'
-import Sensors from '@/scenes/sensors'
-import Chart from 'chart.js/auto'
-import { CategoryScale } from 'chart.js'
-import Sensor from '@/components/Sensor/Sensor'
-import CreateTemplate from '@/scenes/CreateTemplate'
+import { Route, Routes } from "react-router-dom";
+import Navbar from "@/scenes/navbar";
+import Dashboard from "@/scenes/dashboard";
+import About from "@/scenes/about";
+import Templates from "@/scenes/templates";
+import Platforms from "@/scenes/platforms";
+import Sensors from "@/scenes/sensors";
+import Chart from "chart.js/auto";
+import { CategoryScale } from "chart.js";
+import Sensor from "@/components/Sensor/Sensor";
+import CreateTemplate from "@/scenes/CreateTemplate";
 
 // Required by chart.js
-Chart.register(CategoryScale)
+Chart.register(CategoryScale);
 
 export default function App() {
   const cardStyles =
-    'shadow-lg overflow-hidden p-2 bg-gradient-to-r from-[#e6e9f0] to-[#eef1f5]'
+    "shadow-lg overflow-hidden p-2 bg-gradient-to-r from-[#e6e9f0] to-[#eef1f5]";
 
   return (
     <div className="grid min-h-screen grid-cols-[12em_auto] grid-rows-[1fr_50px] gap-[1em] p-[1em]">
@@ -37,5 +37,5 @@ export default function App() {
         </Routes>
       </div>
     </div>
-  )
+  );
 }

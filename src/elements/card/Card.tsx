@@ -1,16 +1,16 @@
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import React from "react";
 
 type TCard = {
-  baseSlug: string
+  baseSlug: string;
   card: {
-    id: number
-    name: string
-  }
-}
+    id: number;
+    name: string;
+  };
+};
 
 const Card: React.FC<TCard> = ({ baseSlug, card }) => {
-  const { id, name } = card
+  const { id, name } = card;
   return (
     <Link
       to={`${baseSlug}${id}`}
@@ -19,7 +19,7 @@ const Card: React.FC<TCard> = ({ baseSlug, card }) => {
     >
       {name}
     </Link>
-  )
-}
+  );
+};
 
 export default Card;

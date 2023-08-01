@@ -1,15 +1,15 @@
-import * as Yup from 'yup'
+import * as Yup from "yup";
 // TODO choose the file extantion for the template create form
 // const validFileExtensions = { image: ['jpg', 'gif', 'png', 'jpeg', 'svg', 'webp'] };
 
 export type TFormData = Yup.InferType<typeof validationSchema>;
 
 export const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
+  name: Yup.string().required("Name is required"),
   angleFromNorth: Yup.number()
-    .required('Angle is required')
-    .min(0, 'Angle must be greater than or equal to 0')
-    .max(360, 'Angle must be less than or equal to 360'),
+    .required("Angle is required")
+    .min(0, "Angle must be greater than or equal to 0")
+    .max(360, "Angle must be less than or equal to 360"),
   internalVolume: Yup.number(),
   height: Yup.number(),
   length: Yup.number(),
@@ -46,4 +46,4 @@ export const validationSchema = Yup.object({
   inclinationAft: Yup.number(),
   inclinationPort: Yup.number(),
   inclinationStarboard: Yup.number(),
-})
+});

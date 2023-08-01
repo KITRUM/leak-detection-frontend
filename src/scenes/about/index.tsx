@@ -23,5 +23,5 @@ export default function About() {
       ipsum. Curabitur gravida nulla nunc, in ultricies velit luctus sed. Proin
       ac libero risus.
     </div>
-  )
+  );
 }
