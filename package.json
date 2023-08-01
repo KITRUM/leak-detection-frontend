@@ -6,10 +6,15 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint": "eslint --fix --ext .ts,.tsx ./src --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --fix && npm run format",
     "preview": "vite preview",
     "prepare": "husky install"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ]
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
