@@ -9,7 +9,7 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "format": "prettier --write .",
-    "precommit": "node -e \"console.log('Running precommit script');\" && lint-staged",
+    "precommit": "lint-staged",
     "prettier": "prettier --check ."
   },
   "lint-staged": {
