@@ -1,14 +1,12 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import {
-  TFormData,
-  validationSchema,
-} from "@/scenes/CreateTemplate/validation.schema";
+import { validationSchema } from "@/scenes/CreateTemplate/validation.schema";
 import { initialValues } from "@/scenes/CreateTemplate/initialValues";
 import axios from "axios";
 
 const CreateTemplate = () => {
-  const onSubmit = (data: TFormData) => {
+  const onSubmit = (data) => {
     // Handle form submission logic here
+    // eslint-disable-next-line no-console
     console.log(data);
 
     const theData = { name: data.name, angleFromNorth: data.angleFromNorth };
@@ -16,6 +14,7 @@ const CreateTemplate = () => {
     axios
       .post("http://127.0.0.1:8000/platforms/10/templates", theData)
       .then((response) => {
+        // eslint-disable-next-line no-console
         console.log("Form data submitted successfully:", response.data);
       })
       .catch((error) => {
