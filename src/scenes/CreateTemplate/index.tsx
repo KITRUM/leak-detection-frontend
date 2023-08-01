@@ -1,13 +1,26 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import { validationSchema } from '@/scenes/CreateTemplate/validation.schema'
+import {
+  TFormData,
+  validationSchema,
+} from '@/scenes/CreateTemplate/validation.schema'
 import { initialValues } from '@/scenes/CreateTemplate/initialValues'
-
-// TODO add types to data
+import axios from 'axios'
 
 const CreateTemplate = () => {
-  const onSubmit = (data) => {
+  const onSubmit = (data: TFormData) => {
     // Handle form submission logic here
     console.log(data)
+
+    const theData = { name: data.name, angleFromNorth: data.angleFromNorth }
+
+    axios
+      .post('http://127.0.0.1:8000/platforms/10/templates', theData)
+      .then((response) => {
+        console.log('Form data submitted successfully:', response.data)
+      })
+      .catch((error) => {
+        console.error('Error submitting form data:', error)
+      })
   }
 
   return (
@@ -357,14 +370,14 @@ const CreateTemplate = () => {
                 />
               </div>
             </div>
-<div className="flex justify-center">
-            <button
-              type="submit"
-              className="min-w-max rounded-[1em] bg-[#eef1f5] px-12 py-2 text-center text-lg shadow-lg duration-300 hover:scale-[1.05] hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100"
-            >
-              Submit
-            </button>
-</div>
+            <div className="flex justify-center">
+              <button
+                type="submit"
+                className="min-w-max rounded-[1em] bg-[#eef1f5] px-12 py-2 text-center text-lg shadow-lg duration-300 hover:scale-[1.05] hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100"
+              >
+                Submit
+              </button>
+            </div>
           </Form>
         </Formik>
       </div>

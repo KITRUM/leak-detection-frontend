@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom'
 import Navbar from '@/scenes/navbar'
 import Dashboard from '@/scenes/dashboard'
-import StatusBar from '@/scenes/statusBar'
 import About from '@/scenes/about'
 import Templates from '@/scenes/templates'
 import Platforms from '@/scenes/platforms'
@@ -36,9 +35,6 @@ export default function App() {
             path="platforms/:platformId/create-template"
           />
         </Routes>
-      </div>
-      <div className={`${cardStyles} rounded-[0.5em] bg-blue-100`}>
-        <StatusBar />
       </div>
     </div>
   )
