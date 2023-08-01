@@ -11,7 +11,8 @@
     "preview": "vite preview",
     "format": "prettier --write src",
     "precommit": "lint-staged",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "lint-check": "lint-staged"
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
