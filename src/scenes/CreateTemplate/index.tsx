@@ -1,10 +1,13 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { validationSchema } from "@/scenes/CreateTemplate/validation.schema";
+import {
+  TFormData,
+  validationSchema,
+} from "@/scenes/CreateTemplate/validation.schema";
 import { initialValues } from "@/scenes/CreateTemplate/initialValues";
 import axios from "axios";
 
 const CreateTemplate = () => {
-  const onSubmit = (data) => {
+  const onSubmit = (data: TFormData) => {
     // Handle form submission logic here
     // eslint-disable-next-line no-console
     console.log(data);
