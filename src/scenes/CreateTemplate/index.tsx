@@ -11,7 +11,7 @@ const CreateTemplate = () => {
     // Handle form submission logic here
     console.log(data)
 
-    const theData = { name: data.name, angleFromNorth: data.angleFromNorth }
+    const theData = { name: data.name, angleFromNorth: data.angleFromNorth       }
 
     axios
       .post('http://127.0.0.1:8000/platforms/10/templates', theData)
