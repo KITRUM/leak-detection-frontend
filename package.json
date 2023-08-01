@@ -9,30 +9,17 @@
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint src --fix && npm run format",
     "preview": "vite preview",
-    "format": "prettier --write '**/*.{js,jsx,ts,tsx,json,css,scss,md}'",
+    "format": "prettier --write src",
     "precommit": "lint-staged",
     "prettier": "prettier --check '**/*.{js,jsx,ts,tsx,json,css,scss,md}'"
-  },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json,css,scss,md}": [
-      "npm run lint",
-      "npm run format",
-      "npm run prettier",
-      "git add"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npx --no-install lint-staged"
-    }
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
+    "commitlint": "^17.6.7",
     "formik": "^2.4.2",
     "framer-motion": "^10.12.9",
-    "lint-staged": "^13.2.3",
     "react": "^18.2.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-chartjs-2": "^5.2.0",
@@ -54,6 +41,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
     "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
     "postcss": "^8.4.23",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.2.8",
