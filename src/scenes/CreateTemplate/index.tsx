@@ -1,27 +1,27 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   TFormData,
   validationSchema,
-} from '@/scenes/CreateTemplate/validation.schema'
-import { initialValues } from '@/scenes/CreateTemplate/initialValues'
-import axios from 'axios'
+} from "@/scenes/CreateTemplate/validation.schema";
+import { initialValues } from "@/scenes/CreateTemplate/initialValues";
+import axios from "axios";
 
 const CreateTemplate = () => {
   const onSubmit = (data: TFormData) => {
     // Handle form submission logic here
-    console.log(data)
+    console.log(data);
 
-    const theData = { name: data.name, angleFromNorth: data.angleFromNorth       }
+    const theData = { name: data.name, angleFromNorth: data.angleFromNorth };
 
     axios
-      .post('http://127.0.0.1:8000/platforms/10/templates', theData)
+      .post("http://127.0.0.1:8000/platforms/10/templates", theData)
       .then((response) => {
-        console.log('Form data submitted successfully:', response.data)
+        console.log("Form data submitted successfully:", response.data);
       })
       .catch((error) => {
-        console.error('Error submitting form data:', error)
-      })
-  }
+        console.error("Error submitting form data:", error);
+      });
+  };
 
   return (
     <div className="p-8">
@@ -64,8 +64,8 @@ const CreateTemplate = () => {
                   className="leading-2 mb-3 rounded-md border p-2 shadow focus:outline focus:outline-1 focus:outline-offset-2 focus:outline-cyan-500"
                 />
                 <label htmlFor="angleFromNorth" className="text-sm">
-                  Angle between the North and the normal to Template's Fore,
-                  measured clockwise.
+                  Angle between the North and the normal to Template&apos;s
+                  Fore, measured clockwise.
                 </label>
                 <ErrorMessage
                   name="angleFromNorth"
@@ -382,7 +382,7 @@ const CreateTemplate = () => {
         </Formik>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default CreateTemplate
+export default CreateTemplate;
