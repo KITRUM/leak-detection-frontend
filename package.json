@@ -22,7 +22,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx --no-install precommit"
+      "pre-commit": "npx --no-install lint-staged"
     }
   },
   "dependencies": {
