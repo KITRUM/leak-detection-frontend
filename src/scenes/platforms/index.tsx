@@ -1,19 +1,14 @@
-import { CardItem, Platform } from '@/types'
-import { useState } from 'react'
-import { fetchPlatforms } from '@/services/platforms'
-import { Cards } from '@/components/card'
+import { Platform } from "@/types";
+import { useState } from "react";
+import { fetchPlatforms } from "@/services/platforms";
+import CardList from "@/components/CardList/CardList";
 
 // Platforms list component
-export function Platforms() {
-  const [platforms, _] = useState<Platform[]>(() => fetchPlatforms())
-
-  const items: CardItem[] = platforms.map((platform) => {
-    return {
-      path: `/platforms/${platform.id}`,
-      element: platform,
-    }
-  })
+const Platforms = () => {
+  const [platforms] = useState<Platform[]>(() => fetchPlatforms());
 
   // TODO: Add image to the platform page
-  return <Cards items={items} />
-}
+  return <CardList baseSlug="/platforms/" cards={platforms} />;
+};
+
+export default Platforms;

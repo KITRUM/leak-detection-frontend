@@ -6,37 +6,60 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "lint": "eslint --fix --ext .ts,.tsx ./src --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint src --fix && npm run format",
+    "preview": "vite preview",
+    "prepare": "husky install",
+    "type-check": "tsc --noEmit",
+    "format": "prettier --write src"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint"
+    ]
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "axios": "^1.4.0",
     "chart.js": "^4.3.0",
+    "commitlint": "^17.6.7",
+    "formik": "^2.4.2",
     "framer-motion": "^10.12.9",
     "react": "^18.2.0",
     "react-anchor-link-smooth-scroll": "^1.0.12",
     "react-chartjs-2": "^5.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.13.0",
-    "tw-elements": "^1.0.0-beta2"
+    "tw-elements": "^1.0.0-beta2",
+    "type-check": "^0.4.0",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@types/node": "^20.1.1",
     "@types/react": "^18.0.28",
     "@types/react-anchor-link-smooth-scroll": "^1.0.2",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
+    "@typescript-eslint/eslint-plugin": "^6.2.1",
+    "@typescript-eslint/parser": "^6.2.1",
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
-    "eslint": "^8.38.0",
+    "eslint": "^8.46.0",
+    "eslint-config-prettier": "^8.9.0",
+    "eslint-config-standard-with-typescript": "^37.0.0",
+    "eslint-plugin-import": "^2.28.0",
+    "eslint-plugin-n": "^16.0.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.33.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.3",
     "postcss": "^8.4.23",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "prettier-plugin-tailwindcss": "^0.2.8",
     "tailwindcss": "^3.3.2",
-    "typescript": "^5.0.2",
+    "typescript": "^5.1.6",
     "vite": "^4.3.2"
   }
 }

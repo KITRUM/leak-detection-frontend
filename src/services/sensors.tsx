@@ -1,4 +1,4 @@
-import { Sensor } from '@/types'
+import { Sensor } from "@/types";
 
 export function fetchSensors(templateId: number): Sensor[] {
   // Fetch all sensors for the specific template
@@ -7,13 +7,13 @@ export function fetchSensors(templateId: number): Sensor[] {
   return [
     {
       id: 1,
-      name: 'First sensor',
+      name: "First sensor",
       templateId: templateId,
     },
     {
       id: 2,
-      name: 'Second sensor',
+      name: "Second sensor",
       templateId: templateId,
     },
-  ]
+  ];
 }

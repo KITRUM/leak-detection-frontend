@@ -1,5 +1,5 @@
 export enum Page {
-  Dashboard = 'Dashboard',
-  Platforms = 'Platforms',
-  About = 'About',
+  Dashboard = "Dashboard",
+  Platforms = "Platforms",
+  About = "About",
 }

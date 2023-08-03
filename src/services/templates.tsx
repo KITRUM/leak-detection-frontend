@@ -1,4 +1,4 @@
-import { Template } from '@/types'
+import { Template } from "@/types";
 
 export function fetchTemplates(platformId: number): Template[] {
   // Fetch all templates for the specific platform
@@ -6,10 +6,10 @@ export function fetchTemplates(platformId: number): Template[] {
   return [
     {
       id: 1,
-      currents_path: '',
-      waves_path: '',
-      simulated_leaks_path: '',
-      name: 'The first template',
+      currents_path: "",
+      waves_path: "",
+      simulated_leaks_path: "",
+      name: "The first template",
       angle_from_north: 12,
       height: null,
       porosity: null,
@@ -22,10 +22,10 @@ export function fetchTemplates(platformId: number): Template[] {
     },
     {
       id: 2,
-      currents_path: '',
-      waves_path: '',
-      simulated_leaks_path: '',
-      name: 'The second template',
+      currents_path: "",
+      waves_path: "",
+      simulated_leaks_path: "",
+      name: "The second template",
       angle_from_north: 12,
       height: null,
       porosity: null,
@@ -36,5 +36,5 @@ export function fetchTemplates(platformId: number): Template[] {
       width: null,
       platformId: platformId,
     },
-  ]
+  ];
 }
