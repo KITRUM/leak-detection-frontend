@@ -1,10 +1,10 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "@/scenes/navbar";
-import Dashboard from "@/scenes/dashboard";
-import About from "@/scenes/about";
-import Templates from "@/scenes/templates";
-import Platforms from "@/scenes/platforms";
-import Sensors from "@/scenes/sensors";
+import Navbar from "@/scenes/SideNavigation";
+import Dashboard from "@/scenes/Dashboard";
+import About from "@/scenes/About";
+import Templates from "@/scenes/Templates";
+import Platforms from "@/scenes/Platforms";
+import Sensors from "@/scenes/Sensors";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import Sensor from "@/components/Sensor/Sensor";
@@ -14,15 +14,12 @@ import CreateTemplate from "@/scenes/CreateTemplate";
 Chart.register(CategoryScale);
 
 export default function App() {
-  const cardStyles =
-    "shadow-lg overflow-hidden p-2 bg-gradient-to-r from-[#e6e9f0] to-[#eef1f5]";
-
   return (
-    <div className="grid min-h-screen grid-cols-[12em_auto] grid-rows-[1fr_50px] gap-[1em] p-[1em]">
-      <div className={`${cardStyles} row-span-2 rounded-[1em]`}>
+    <div className="flex min-h-screen bg-app-bg">
+      <div className="fixed top-0 left-0 w-64 h-full bg-gray-900">
         <Navbar />
       </div>
-      <div className={`${cardStyles} rounded-[1em] bg-yellow-100`}>
+      <div className="overflow-y-auto ml-64 w-full">
         <Routes>
           <Route element={<Dashboard />} path="/" index={true} />
           <Route element={<Platforms />} path="/platforms" />

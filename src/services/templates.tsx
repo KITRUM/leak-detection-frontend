@@ -1,7 +1,7 @@
 import { Template } from "@/types";
 
 export function fetchTemplates(platformId: number): Template[] {
-  // Fetch all templates for the specific platform
+  // Fetch all Templates for the specific platform
   // TODO: Fetch the real data from the backend
   return [
     {

@@ -1,31 +1,35 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   content: [
-    './src/**/*.{html,js,tsx,ts,tsx}',
-    './node_modules/tw-elements/dist/js/**/*.js',
+    "./src/**/*.{html,js,tsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
   ],
 
   theme: {
     extend: {
       colors: {
-        'bg-100': '#D0DAE9',
-        'bg-200': '#EAEFF4',
-        'primary-100': '#B8CEEE',
-        'primary-200': '#A2C1EE',
-        'primary-300': '#6693D5',
-        'primary-text': '#494D4F',
+        "primary-black": "#1A1919",
+        "primary-blue": "#006AFF",
+        "app-bg": "#F8F7F1",
+        "card-light": "#FDFDFD",
+        "primary-text": "#494D4F",
       },
       fontFamily: {
-        dmsans: ['sans-serif'],
-        montserrat: ['sans-serif'],
+        dmsans: ["sans-serif"],
+        montserrat: ["sans-serif"],
       },
       screens: {
-        xs: '480px',
-        sm: '768px',
-        md: '1060px',
+        xs: "480px",
+        sm: "768px",
+        md: "1060px",
+      },
+      boxShadow: {
+        card: "0px 8px 24px 0px rgba(69, 69, 80, 0.10);",
       },
     },
   },
-  plugins: [require('tw-elements/dist/plugin.cjs')],
-  darkMode: 'class',
-}
+  // eslint-disable-next-line no-undef
+  plugins: [require("tw-elements/dist/plugin.cjs")],
+  darkMode: "class",
+};
