@@ -1,7 +1,10 @@
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
-import { TFormData, validationSchema } from "./validation.schema";
-import { initialValues } from "./initialValues";
-import axios from "axios";
+import {
+  TFormData,
+  validationSchema,
+} from "@/scenes/CreateTemplate/validation.schema";
+import { initialValues } from "@/scenes/CreateTemplate/initialValues";
+import { createTemplate } from "@/services/templates";
 
 type MyFormikHelpers = FormikHelpers<TFormData> & {
   setValues: (values: TFormData, shouldValidate?: boolean) => void;
@@ -10,12 +13,9 @@ type MyFormikHelpers = FormikHelpers<TFormData> & {
 const CreateTemplate = () => {
   const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
     try {
-      const response = await axios.post(
-        "http://127.0.0.1:8000/platforms/1/templates",
-        data
-      );
+      const response = await createTemplate(1, data);
 
-      if (response.status === 201) {
+      if (response === 201) {
         actions.setSubmitting(false);
         actions.resetForm();
       }
