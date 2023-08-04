@@ -1,28 +1,27 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
-import {
-  TFormData,
-  validationSchema,
-} from "@/scenes/CreateTemplate/validation.schema";
-import { initialValues } from "@/scenes/CreateTemplate/initialValues";
+import { Formik, Form, Field, ErrorMessage, FormikHelpers } from "formik";
+import { TFormData, validationSchema } from "./validation.schema";
+import { initialValues } from "./initialValues";
 import axios from "axios";
 
+type MyFormikHelpers = FormikHelpers<TFormData> & {
+  setValues: (values: TFormData, shouldValidate?: boolean) => void;
+};
+
 const CreateTemplate = () => {
-  const onSubmit = (data: TFormData) => {
-    // Handle form submission logic here
-    // eslint-disable-next-line no-console
-    console.log(data);
+  const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
+    try {
+      const response = await axios.post(
+        "http://127.0.0.1:8000/platforms/1/templates",
+        data
+      );
 
-    const theData = { name: data.name, angleFromNorth: data.angleFromNorth };
-
-    axios
-      .post("http://127.0.0.1:8000/platforms/10/templates", theData)
-      .then((response) => {
-        // eslint-disable-next-line no-console
-        console.log("Form data submitted successfully:", response.data);
-      })
-      .catch((error) => {
-        console.error("Error submitting form data:", error);
-      });
+      if (response.status === 201) {
+        actions.setSubmitting(false);
+        actions.resetForm();
+      }
+    } catch (error) {
+      console.error("Error submitting form data:", error);
+    }
   };
 
   return (
@@ -375,7 +374,7 @@ const CreateTemplate = () => {
             <div className="flex justify-center">
               <button
                 type="submit"
-                className="min-w-max rounded-[1em] bg-[#eef1f5] px-12 py-2 text-center text-lg shadow-lg duration-300 hover:scale-[1.05] hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100"
+                className="flex items-center justify-center min-w-max px-6 py-2 rounded border border-transparent bg-primary-blue text-base text-white shadow-lg duration-300 hover:bg-white hover:text-primary-blue hover:border hover:border-primary-blue"
               >
                 Submit
               </button>

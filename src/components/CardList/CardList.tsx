@@ -1,4 +1,4 @@
-import Card from "@/elements/card/Card";
+import Card from "@/elements/Card";
 import React from "react";
 
 type TCardList = {
@@ -11,7 +11,7 @@ type TCardList = {
 
 const CardList: React.FC<TCardList> = ({ baseSlug, cards }) => {
   return (
-    <div className="mb-8 mt-8 grid grid-cols-2 place-items-center gap-[3em] p-8">
+    <div className="grid grid-cols-4 place-items-center gap-8 p-8">
       {cards.map((card) => {
         return <Card key={card.id} card={card} baseSlug={baseSlug} />;
       })}

@@ -1,7 +1,7 @@
 import { Sensor } from "@/types";
 
 export function fetchSensors(templateId: number): Sensor[] {
-  // Fetch all sensors for the specific template
+  // Fetch all Sensors for the specific template
   // TODO: Fetch the real data from the backend
 
   return [
