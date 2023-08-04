@@ -8,6 +8,7 @@ const Platforms = () => {
   const [platforms] = useState<Platform[]>(() => fetchPlatforms());
 
   // TODO: Add image to the platform page
+
   return <CardList baseSlug="/platforms/" cards={platforms} />;
 };
 
