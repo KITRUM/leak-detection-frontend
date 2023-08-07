@@ -5,12 +5,16 @@ import {
 } from "@/scenes/CreateTemplate/validation.schema";
 import { initialValues } from "@/scenes/CreateTemplate/initialValues";
 import { createTemplate } from "@/services/templates";
+import { useModal } from "@/context/ModalContext";
 
 type MyFormikHelpers = FormikHelpers<TFormData> & {
   setValues: (values: TFormData, shouldValidate?: boolean) => void;
 };
 
 const CreateTemplate = () => {
+  const { openModal } = useModal();
+  const openTemplateCreatedModal = () =>
+    openModal("Template successfully created");
   const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
     try {
       const response = await createTemplate(1, data);
@@ -18,6 +22,7 @@ const CreateTemplate = () => {
       if (response === 201) {
         actions.setSubmitting(false);
         actions.resetForm();
+        openTemplateCreatedModal();
       }
     } catch (error) {
       console.error("Error submitting form data:", error);
