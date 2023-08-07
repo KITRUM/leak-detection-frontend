@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "@/scenes/SideNavigation";
+import SideNavigation from "@/scenes/SideNavigation";
 import Dashboard from "@/scenes/Dashboard";
 import About from "@/scenes/About";
 import Templates from "@/scenes/Templates";
@@ -17,7 +17,7 @@ export default function App() {
   return (
     <div className="flex min-h-screen bg-app-bg">
       <div className="fixed top-0 left-0 w-64 h-full bg-gray-900">
-        <Navbar />
+        <SideNavigation />
       </div>
       <div className="overflow-y-auto ml-64 w-full">
         <Routes>
