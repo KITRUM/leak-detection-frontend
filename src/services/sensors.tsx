@@ -1,19 +1,11 @@
-import { Sensor } from "@/types";
+import { api } from "@/services/api";
 
-export function fetchSensors(templateId: number): Sensor[] {
-  // Fetch all Sensors for the specific template
-  // TODO: Fetch the real data from the backend
-
-  return [
-    {
-      id: 1,
-      name: "First sensor",
-      templateId: templateId,
-    },
-    {
-      id: 2,
-      name: "Second sensor",
-      templateId: templateId,
-    },
-  ];
-}
+export const getSensorsForTemplate = async (templateId: number) => {
+  try {
+    const response = await api.get(`/templates/${templateId}/sensors`);
+    return response.data.result;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};

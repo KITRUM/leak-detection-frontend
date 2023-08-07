@@ -5,7 +5,7 @@ export type Platform = {
   name: string;
 };
 
-export type Template = {
+export type TTemplate = {
   id: number;
   currents_path: string; // Path
   waves_path: string; // Path
@@ -28,7 +28,7 @@ export type Template = {
   platformId: number;
 };
 
-export type Sensor = {
+export type TSensor = {
   id: number;
   name: string;
   templateId: number;
