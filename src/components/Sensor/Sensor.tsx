@@ -4,6 +4,8 @@ import { AnomalyDetection, Response, TimeSeriesData } from "@/types";
 import { Line } from "react-chartjs-2";
 
 const AnomalyDeviationColorMapping = {
+  // Undefined deviation should repeat the TSD raw color
+  UNDEFINED: "#e1e1e1",
   CRITICAL: "red",
   WARNING: "yellow",
   OK: "green",
@@ -44,7 +46,6 @@ const Sensor = () => {
           console.log(result);
           return result;
         }),
-        // backgroundColor: ['red', 'green'],
         borderColor: "gray",
         borderWidth: 0.5,
       },
