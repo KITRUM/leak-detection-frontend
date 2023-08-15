@@ -28,10 +28,17 @@ export type TTemplate = {
   platformId: number;
 };
 
+export type TSensorConfiguration = {
+  interactiveFeedbackMode: boolean;
+};
+
 export type TSensor = {
   id: number;
   name: string;
-  templateId: number;
+  x: number;
+  y: number;
+  z: number;
+  configuration: TSensorConfiguration;
 };
 
 export type TimeSeriesData = {
@@ -50,6 +57,7 @@ export type SensorRetrieveItem = {
   ppmv: number;
   timestamp: Date;
   deviation: string | null;
+  configuration: TSensorConfiguration;
 };
 
 export type Response<Type> = {
