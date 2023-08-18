@@ -7,17 +7,20 @@ type TCard = {
     id: number;
     name: string;
   };
+  backgorundColor?: string | null;
 };
 
-const Card: React.FC<TCard> = ({ baseSlug, card }) => {
-  const { id, name } = card;
+const Card: React.FC<TCard> = ({ baseSlug, card, backgorundColor }) => {
+  const background =
+    backgorundColor == null ? "bg-white" : `bg-${backgorundColor}-50`;
+
   return (
     <Link
-      to={`${baseSlug}${id}`}
-      key={id}
-      className="min-h-[256px] w-full p-8 rounded-lg bg-card-light text-lg text-primary-black shadow-card hover:scale-[1.05] hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 duration-300"
+      to={`${baseSlug}${card.id}`}
+      key={card.id}
+      className={`min-h-[256px] w-full p-8 ${background} rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300`}
     >
-      {name}
+      {card.name}
     </Link>
   );
 };

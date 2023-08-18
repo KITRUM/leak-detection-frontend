@@ -34,6 +34,12 @@ export type TSensor = {
   templateId: number;
 };
 
+export type TSensorEvent = {
+  id: number;
+  type: string;
+  sensorId: number;
+};
+
 export type TimeSeriesData = {
   id: number;
   ppmv: number;

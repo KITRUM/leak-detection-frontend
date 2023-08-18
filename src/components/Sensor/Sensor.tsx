@@ -43,7 +43,6 @@ const Sensor = () => {
             AnomalyDeviationColorMapping[element.value.toUpperCase()];
 
           // eslint-disable-next-line no-console
-          console.log(result);
           return result;
         }),
         borderColor: "gray",
