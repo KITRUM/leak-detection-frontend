@@ -49,6 +49,7 @@ export type TimeSeriesData = {
 
 export type AnomalyDetection = {
   id: number;
+  interactiveFeedbackMode: boolean;
   value: string;
   timeSeriesData: TimeSeriesData;
 };
