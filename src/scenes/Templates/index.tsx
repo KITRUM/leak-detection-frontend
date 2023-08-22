@@ -1,9 +1,9 @@
 import { getTemplatesForPlatform } from "@/services/templates";
 import { useParams } from "react-router-dom";
 import CardList from "@/components/CardList/CardList";
-import LinkButton from "../../elements/LinkButton";
 import { useEffect, useState } from "react";
 import { TTemplate } from "@/types";
+import LinkButton from "@/elements/LinkButton/LinkButton";
 
 const Templates = () => {
   const [templates, setTemplates] = useState<TTemplate[] | []>([]);

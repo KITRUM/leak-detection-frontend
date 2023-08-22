@@ -1,5 +1,5 @@
-import Card from "@/elements/Card";
 import React from "react";
+import Card from "@/elements/Card/Card";
 
 type TCardList = {
   baseSlug: string;
