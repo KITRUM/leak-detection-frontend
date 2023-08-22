@@ -7,13 +7,14 @@ type TCard = {
     id: number;
     name: string;
   };
-  backgorundColor?: string | null;
+  backgroundColor?: string | null;
 };
 
-const Card: React.FC<TCard> = ({ baseSlug, card, backgorundColor }) => {
+const Card: React.FC<TCard> = ({ baseSlug, card, backgroundColor }) => {
   const background =
-    backgorundColor == null ? "bg-white" : `bg-${backgorundColor}-50`;
+    backgroundColor == null ? "bg-white" : `bg-${backgroundColor}-50`;
 
+  console.log("Background color", backgroundColor, background);
   return (
     <Link
       to={`${baseSlug}${card.id}`}

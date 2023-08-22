@@ -17,6 +17,7 @@ const EVENT_TYPE_TO_COLOR_MAPPING: Record<string, string> = {
 };
 
 const CardList: React.FC<TCardList> = ({ baseSlug, sensors, events }) => {
+  console.log(events);
   return (
     <div className="grid grid-cols-4 place-items-center gap-8 p-8">
       {sensors.map((sensor) => {
@@ -25,7 +26,7 @@ const CardList: React.FC<TCardList> = ({ baseSlug, sensors, events }) => {
             key={sensor.id}
             card={sensor}
             baseSlug={baseSlug}
-            backgorundColor={
+            backgroundColor={
               events[sensor.id]
                 ? EVENT_TYPE_TO_COLOR_MAPPING[events[sensor.id].type]
                 : null

@@ -33,10 +33,13 @@ const Sensors = () => {
         `${hostUrl}/sensors/${sensor.id}/events`
       );
 
+      console.log("Fetching events from sensors");
+
       // Handle sensor events messages, received from the WebSocket
       socketSensorEvents.onmessage = (event) => {
         const response: Response<TSensorEvent> = JSON.parse(event.data);
         const sensorEvent = response.result as TSensorEvent;
+        console.log("Event received: ", sensorEvent);
         setSensorsEvents((prevEvents) => ({
           ...prevEvents,
           [sensor.id]: sensorEvent,
