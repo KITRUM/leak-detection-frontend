@@ -22,14 +22,12 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
           const sensorsData = await getSensorsForTemplate(+template.id);
           setSensors(sensorsData);
         }
-      } catch (error) {
-        console.error("Error fetching templates:", error);
-      }
+      } catch (error) {}
     };
     fetchSensors();
   }, []);
 
-  return (
+  return sensors ? (
     <Link
       to={`${baseSlug}${template.id}`}
       key={template.id}
@@ -39,6 +37,16 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
     >
       <h2 className="text-lg">template: {template.name}</h2>
       <SensorsCardsList sensors={sensors} />
+    </Link>
+  ) : (
+    <Link
+      to={`${baseSlug}${template.id}`}
+      key={template.id}
+      className={
+        "min-h-[256px] w-full flex flex-col gap-2 p-4 bg-white rounded-md text-primary-black shadow-card hover:scale-[1.05] duration-300"
+      }
+    >
+      <h2 className="text-lg">template: {template.name}</h2>
     </Link>
   );
 };
