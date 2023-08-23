@@ -1,6 +1,6 @@
 import { getTemplatesForPlatform } from "@/services/templates";
 import { useParams } from "react-router-dom";
-import CardList from "@/components/CardList/CardList";
+import TemplateCardList from "@/components/TemplateCardList/TemplateCardList";
 import { useEffect, useState } from "react";
 import { TTemplate } from "@/types";
 import LinkButton from "@/elements/LinkButton/LinkButton";
@@ -33,7 +33,9 @@ const Templates = () => {
         />
       </div>
       {!templates && <div className="p-6">No templates for this platform</div>}
-      {templates && <CardList baseSlug="/templates/" cards={templates} />}
+      {templates && (
+        <TemplateCardList baseSlug="/templates/" templates={templates} />
+      )}
     </>
   );
 };

@@ -3,12 +3,11 @@ import React, { useEffect, useState } from "react";
 import { TSensorEvent } from "@/types";
 
 type TSensorCard = {
-  baseSlug: string;
+  baseSlug?: string;
   sensor: {
     id: number;
     name: string;
   };
-  backgroundColor?: string | null;
 };
 // TODO move
 enum SENSOR_EVEN_COLOR {
@@ -18,10 +17,10 @@ enum SENSOR_EVEN_COLOR {
 // TODO move
 const hostUrl = "ws://localhost:8000";
 
+// We use SensorsCardsList in template if we have no baseSlug prop
+
 const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
   const [sensorCardColor, setSensorCardColor] = useState("");
-  // eslint-disable-next-line no-console
-  console.log("sensorCardColor", sensorCardColor);
 
   useEffect(() => {
     const socketSensorEvents = new WebSocket(
@@ -32,7 +31,7 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
       const response = JSON.parse(event.data);
       const { type } = response.result as TSensorEvent;
       // eslint-disable-next-line no-console
-      console.log("Event received: ", type);
+      console.log("sensor id:", sensor.id, "received event:", type);
       setSensorCardColor(
         SENSOR_EVEN_COLOR[type as keyof typeof SENSOR_EVEN_COLOR]
       );
@@ -43,14 +42,24 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
     };
   }, []);
 
+  if (baseSlug) {
+    return (
+      <Link
+        to={`${baseSlug}${sensor.id}`}
+        key={sensor.id}
+        className={`min-h-[256px] w-full ${sensorCardColor} p-8 rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300`}
+      >
+        {sensor.name}
+      </Link>
+    );
+  }
+
   return (
-    <Link
-      to={`${baseSlug}${sensor.id}`}
-      key={sensor.id}
-      className={`min-h-[256px] w-full ${sensorCardColor} p-8 rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300`}
+    <div
+      className={`flex justify-items-center items-center min-h-[88px] w-full ${sensorCardColor} p-1 rounded-md text-xs text-primary-black shadow-card hover:scale-[1.05] duration-300`}
     >
-      {sensor.name}
-    </Link>
+      <div className="w-full text-center">{sensor.name}</div>
+    </div>
   );
 };
 
