@@ -54,7 +54,6 @@ const Sensor = () => {
       if (Array.isArray(response.result)) {
         const tsdArray = response.result as TimeSeriesData[];
         setTimeSeriesData(tsdArray);
-        // console.log("TimeSeriesData", tsdArray);
       } else {
         const tsd = response.result as TimeSeriesData;
         setTimeSeriesData((prevData) => [...prevData, tsd]);
@@ -67,7 +66,6 @@ const Sensor = () => {
       if (Array.isArray(response.result)) {
         const result = response.result as AnomalyDetection[];
         setAnomalyDetections(result);
-        // console.log("AnomalyDetections", result);
       } else {
         const result = response.result as AnomalyDetection;
         setAnomalyDetections((prevData) => [...prevData, result]);

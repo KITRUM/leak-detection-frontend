@@ -41,6 +41,12 @@ export type TSensor = {
   configuration: TSensorConfiguration;
 };
 
+export type TSensorEvent = {
+  id: number;
+  type: string;
+  sensorId: number;
+};
+
 export type TimeSeriesData = {
   id: number;
   ppmv: number;
