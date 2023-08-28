@@ -7,6 +7,7 @@ import Platforms from "@/scenes/Platforms";
 import Sensors from "@/scenes/Sensors";
 import Sensor from "@/components/Sensor/Sensor";
 import CreateTemplate from "@/scenes/CreateTemplate";
+import CreateSensor from "@/scenes/CreateSensor";
 
 export default function App() {
   return (
@@ -19,13 +20,17 @@ export default function App() {
           <Route element={<Dashboard />} path="/" index={true} />
           <Route element={<Platforms />} path="/platforms" />
           <Route element={<Templates />} path="/platforms/:platformId" />
-          <Route element={<Sensors />} path="/templates/:templateId" />
-          <Route element={<Sensor />} path="/sensors/:sensorId" />
-          <Route element={<About />} path="/about" />
           <Route
             element={<CreateTemplate />}
             path="platforms/:platformId/create-template"
           />
+          <Route element={<Sensors />} path="/templates/:templateId" />
+          <Route element={<Sensor />} path="/sensors/:sensorId" />
+          <Route
+            element={<CreateSensor />}
+            path="templates/:template_id/create-sensor"
+          />
+          <Route element={<About />} path="/about" />
         </Routes>
       </div>
     </div>
