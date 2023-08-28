@@ -20,9 +20,7 @@ const SensorsCardsList: React.FC<TSensorsCardsList> = ({
   const gap = baseSlug ? "gap-8" : "gap-1";
 
   return (
-    <div
-      className={`grid ${columnsNumber} place-items-center ${gap} ${padding}`}
-    >
+    <div className={`grid ${columnsNumber} ${gap} ${padding}`}>
       {sensors.map((sensor) => {
         return (
           <SensorCard key={sensor.id} sensor={sensor} baseSlug={baseSlug} />

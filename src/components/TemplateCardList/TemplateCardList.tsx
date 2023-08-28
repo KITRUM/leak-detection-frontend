@@ -14,7 +14,7 @@ const TemplateCardList: React.FC<TTemplateCardList> = ({
   templates,
 }) => {
   return (
-    <div className="grid grid-cols-4 place-items-center gap-8 p-8">
+    <div className="grid grid-cols-4 place-items-center items-start gap-8 p-8">
       {templates.map((template) => {
         return (
           <TemplateCard

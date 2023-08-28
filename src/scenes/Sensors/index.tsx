@@ -5,6 +5,7 @@ import { getSensorsForTemplate } from "@/services/sensors";
 import SensorsCardsList from "@/components/SensorsCardsList/SensorsCardsList";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
+import LinkButton from "@/elements/LinkButton/LinkButton";
 
 Chart.register(CategoryScale);
 
@@ -28,11 +29,18 @@ const Sensors = () => {
     fetchSensors();
   }, []);
 
-  if (!sensors) {
-    return <div className="p-6">No sensors for this template</div>;
-  }
-
-  return <SensorsCardsList baseSlug="/sensors/" sensors={sensors} />;
+  return (
+    <>
+      <div className="flex justify-end pt-4 px-4">
+        <LinkButton
+          name="Create sensor"
+          slug={`/templates/${templateId}/create-sensor`}
+        />
+      </div>
+      {!sensors && <div className="p-6">No sensors for this template</div>}
+      {sensors && <SensorsCardsList baseSlug="/sensors/" sensors={sensors} />}
+    </>
+  );
 };
 
 export default Sensors;
