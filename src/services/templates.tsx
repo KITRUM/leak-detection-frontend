@@ -1,5 +1,5 @@
 import { api } from "@/services/api";
-import { TFormData } from "@/scenes/CreateTemplate/validation.schema";
+import { TFormData } from "@/components/CreateTemplateForm/validation.schema";
 
 export const getTemplatesForPlatform = async (platformId: number) => {
   try {

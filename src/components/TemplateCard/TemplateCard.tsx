@@ -38,7 +38,7 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
         "min-h-[256px] w-full h-full flex flex-col gap-2 p-4 bg-white rounded-md text-primary-black shadow-card hover:scale-[1.05] duration-300"
       }
     >
-      <h2 className="text-lg">Template: {template.name}</h2>
+      <h2 className="text-lg">{template.name}</h2>
       {sensors && <SensorsCardsList sensors={sensors} />}
     </Link>
   );

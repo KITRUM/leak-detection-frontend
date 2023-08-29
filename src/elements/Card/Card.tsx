@@ -15,11 +15,9 @@ const Card: React.FC<TCard> = ({ baseSlug, card }) => {
     <Link
       to={`${baseSlug}${card.id}`}
       key={card.id}
-      className={
-        "min-h-[256px] w-full p-8 bg-white rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300"
-      }
+      className={`flex flex-col justify-end min-h-[256px] w-full p-8 bg-cover rounded-md text-xl text-white shadow-card hover:scale-[1.05] duration-300 bg-[url('/platform-${card.id}.WebP')]`}
     >
-      {card.name}
+      <div>{card.name}</div>
     </Link>
   );
 };
