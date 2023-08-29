@@ -1,6 +1,6 @@
 import { api } from "@/services/api";
 import { TSensor } from "@/types";
-import { TFormData } from "@/scenes/CreateSensor/validation.schema";
+import { TFormData } from "@/components/CreateSensorForm/validation.schema";
 
 export const getSensorsForTemplate = async (templateId: number) => {
   try {
