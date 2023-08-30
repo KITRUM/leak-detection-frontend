@@ -1,4 +1,4 @@
-// The basic Card item contracttypes
+// The basic PlatformCard item contracttypes
 
 export type Platform = {
   id: number;
