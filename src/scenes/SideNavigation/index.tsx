@@ -1,6 +1,6 @@
 import { HomeIcon, MapIcon, GiftIcon } from "@heroicons/react/20/solid";
 import NavLink from "@/elements/NavLink/NavLink";
-import logo from "../../../public/logo.svg";
+import logo from "/logo.svg";
 
 const SideNavigation = () => {
   return (

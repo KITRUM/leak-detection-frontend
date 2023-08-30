@@ -1,7 +1,7 @@
 import { Platform } from "@/types";
 import { useState } from "react";
 import { fetchPlatforms } from "@/services/platforms";
-import CardList from "@/components/CardList/CardList";
+import PlatformList from "@/components/PlatformList/PlatformList";
 
 const Platforms = () => {
   const [platforms] = useState<Platform[]>(() => fetchPlatforms());
@@ -16,7 +16,9 @@ const Platforms = () => {
         </h1>
       </div>
       {!platforms && <div className="p-6">No platform loaded</div>}
-      {platforms && <CardList baseSlug="/platforms/" cards={platforms} />}
+      {platforms && (
+        <PlatformList baseSlug="/platforms/" platforms={platforms} />
+      )}
     </>
   );
 };
