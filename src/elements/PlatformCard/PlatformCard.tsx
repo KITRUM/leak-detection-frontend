@@ -23,7 +23,6 @@ const PlatformCard: React.FC<TCard> = ({ baseSlug, platform }) => {
   return (
     <Link to={`${baseSlug}${platform.id}`} key={platform.id} className={styles}>
       <div>{platform.name}</div>
-      {platform.id}
     </Link>
   );
 };

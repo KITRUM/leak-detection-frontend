@@ -32,9 +32,7 @@ const Sensors = () => {
   return (
     <>
       <div className="flex justify-between py-2 px-4">
-        <h1 className="pt-5 text-sm leading-4 text-primary-blue border-b border-primary-blue">
-          Sensors
-        </h1>
+        <h1 className="pt-5 text-xl leading-4 text-text-gray-300">Sensors</h1>
         <LinkButton
           name="Create sensor"
           slug={`/templates/${templateId}/create-sensor`}

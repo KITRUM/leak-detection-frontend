@@ -46,7 +46,6 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
     return (
       <Link
         to={`${baseSlug}${sensor.id}`}
-        key={sensor.id}
         className={`min-h-[256px] w-full ${sensorCardColor} p-8 rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300`}
       >
         {sensor.name}
@@ -56,7 +55,7 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
 
   return (
     <div
-      className={`flex justify-items-center items-center min-h-[88px] w-full ${sensorCardColor} p-1 rounded-md text-xs text-primary-black shadow-card hover:scale-[1.05] duration-300`}
+      className={`flex justify-items-center items-center min-h-[88px] w-full ${sensorCardColor} p-1 rounded-md text-xs text-primary-black border border-border-gray`}
     >
       <div className="w-full text-center">{sensor.name}</div>
     </div>

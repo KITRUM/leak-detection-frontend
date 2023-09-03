@@ -11,9 +11,14 @@ module.exports = {
       colors: {
         "primary-black": "#1A1919",
         "primary-blue": "#006AFF",
-        "app-bg": "#F8F7F1",
+        "app-bg": "#FDFDFD",
         "card-light": "#FDFDFD",
         "primary-text": "#494D4F",
+        "text-gray-100": "#A3A3A3",
+        "text-gray-200": "#656575",
+        "text-gray-300": "#525256",
+        "text-outline": "rgba(163, 163, 163, 0.20)",
+        "border-gray": "#DEDEDE",
       },
       fontFamily: {
         dmsans: ["sans-serif"],
