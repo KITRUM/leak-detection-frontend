@@ -17,7 +17,7 @@ const SensorsCardsList: React.FC<TSensorsCardsList> = ({
 }) => {
   const columnsNumber = baseSlug ? "grid-cols-4" : "grid-cols-2";
   const padding = baseSlug ? "p-8" : "p-1";
-  const gap = baseSlug ? "gap-8" : "gap-1";
+  const gap = baseSlug ? "gap-8" : "gap-2";
 
   return (
     <div className={`grid ${columnsNumber} ${gap} ${padding}`}>

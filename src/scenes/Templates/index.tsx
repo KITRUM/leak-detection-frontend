@@ -27,7 +27,7 @@ const Templates = () => {
   return (
     <>
       <div className="flex justify-between py-2 px-4">
-        <h1 className="pt-5 text-sm leading-4 text-primary-blue border-b border-primary-blue">
+        <h1 className="block pt-5 text-xl leading-4 text-text-gray-300">
           Templates
         </h1>
         <LinkButton

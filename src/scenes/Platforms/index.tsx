@@ -10,8 +10,8 @@ const Platforms = () => {
 
   return (
     <>
-      <div className="min-h-[58px] py-2 px-4">
-        <h1 className="block w-min pt-5 text-sm leading-4 text-primary-blue border-b border-primary-blue">
+      <div className="flex justify-between min-h-[58px] py-2 px-4">
+        <h1 className="block w-min pt-5 text-xl leading-4 text-text-gray-300">
           Platforms
         </h1>
       </div>
