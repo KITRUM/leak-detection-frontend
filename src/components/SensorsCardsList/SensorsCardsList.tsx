@@ -1,12 +1,10 @@
 import React from "react";
 import SensorCard from "@/components/SensorCard/SensorCard";
+import { TSensor } from "@/types";
 
 type TSensorsCardsList = {
   baseSlug?: string;
-  sensors: {
-    id: number;
-    name: string;
-  }[];
+  sensors: TSensor[];
 };
 
 // We use SensorsCardsList in template if we have no baseSlug prop

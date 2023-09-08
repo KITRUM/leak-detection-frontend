@@ -20,7 +20,9 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
       try {
         if (template.id) {
           const sensorsData = await getSensorsForTemplate(+template.id);
-          setSensors(sensorsData);
+          if (sensorsData) {
+            setSensors(sensorsData);
+          }
         }
       } catch (error) {
         // eslint-disable-next-line no-console
@@ -38,7 +40,7 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
         "min-h-[256px] w-full h-full flex flex-col gap-2 p-6 bg-white rounded-md shadow-card hover:scale-[1.05] duration-300"
       }
     >
-      <h2 className="block text-md text-text-gray  border-b border-text-outline">
+      <h2 className="block text-md text-text-gray border-b border-text-outline">
         {template.name}
       </h2>
       {sensors && <SensorsCardsList sensors={sensors} />}

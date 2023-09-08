@@ -1,31 +1,32 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { TSensorEvent } from "@/types";
+import { TSensor, TSensorEvent } from "@/types";
+import { connectSensorEvents } from "@/services/sensor";
+import Pin from "@/elements/Pin/Pin";
+import { sensorUpdatePin } from "@/services/sensors";
+import Spinner from "@/elements/Spinner/Spinner";
 
 type TSensorCard = {
   baseSlug?: string;
-  sensor: {
-    id: number;
-    name: string;
-  };
+  sensor: TSensor;
 };
 // TODO move
-enum SENSOR_EVEN_COLOR {
+enum SENSOR_EVENT_COLOR {
   ok = "bg-green-500",
   critical = "bg-red-500",
 }
-// TODO move
-const hostUrl = "ws://localhost:8000";
 
 // We use SensorsCardsList in template if we have no baseSlug prop
 
 const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
   const [sensorCardColor, setSensorCardColor] = useState("");
+  const [isSensorPinned, setIsSensorPinned] = useState(
+    sensor.configuration.pinned
+  );
+  const [isPinLoading, setIsPinLoading] = useState(false);
 
   useEffect(() => {
-    const socketSensorEvents = new WebSocket(
-      `${hostUrl}/sensors/${sensor.id}/events`
-    );
+    const socketSensorEvents = connectSensorEvents(sensor.id);
 
     socketSensorEvents.onmessage = (event) => {
       const response = JSON.parse(event.data);
@@ -33,7 +34,7 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
       // eslint-disable-next-line no-console
       console.log("sensor id:", sensor.id, "received event:", type);
       setSensorCardColor(
-        SENSOR_EVEN_COLOR[type as keyof typeof SENSOR_EVEN_COLOR]
+        SENSOR_EVENT_COLOR[type as keyof typeof SENSOR_EVENT_COLOR]
       );
     };
 
@@ -42,14 +43,32 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
     };
   }, []);
 
+  const handlePinClick = async () => {
+    setIsPinLoading(true);
+
+    const sensorPinnedStatus = await sensorUpdatePin(
+      sensor.id,
+      !isSensorPinned
+    );
+
+    setIsSensorPinned(!!sensorPinnedStatus);
+    setIsPinLoading(false);
+  };
+
   if (baseSlug) {
     return (
-      <Link
-        to={`${baseSlug}${sensor.id}`}
-        className={`min-h-[256px] w-full ${sensorCardColor} p-8 rounded-md text-lg text-primary-black shadow-card hover:scale-[1.05] duration-300`}
+      <div
+        className={`min-h-[256px] w-full ${sensorCardColor} p-2 rounded-md text-lg text-primary-black shadow-card`}
       >
-        {sensor.name}
-      </Link>
+        <div className="flex justify-end" onClick={handlePinClick}>
+          {isPinLoading ? <Spinner /> : <Pin isPinned={isSensorPinned} />}
+        </div>
+        <Link to={`${baseSlug}${sensor.id}`} className="block h-full">
+          <h2 className="mx-4 block text-md text-text-gray border-b border-text-outline hover:scale-[1.05] duration-300">
+            {sensor.name}
+          </h2>
+        </Link>
+      </div>
     );
   }
 

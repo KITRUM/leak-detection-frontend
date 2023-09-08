@@ -8,6 +8,7 @@ import Sensors from "@/scenes/Sensors";
 import Sensor from "@/components/Sensor/Sensor";
 import CreateTemplate from "@/scenes/CreateTemplate";
 import CreateSensor from "@/scenes/CreateSensor";
+import { INFRASTRUCTURE } from "@/constants/infrastructure";
 
 export default function App() {
   return (
@@ -17,20 +18,24 @@ export default function App() {
       </div>
       <div className="overflow-y-auto ml-64 w-full">
         <Routes>
-          <Route element={<Dashboard />} path="/" index={true} />
-          <Route element={<Platforms />} path="/platforms" />
-          <Route element={<Templates />} path="/platforms/:platformId" />
+          <Route
+            element={<Dashboard />}
+            path={INFRASTRUCTURE.HOME}
+            index={true}
+          />
+          <Route element={<Platforms />} path={INFRASTRUCTURE.PLATFORMS} />
+          <Route element={<Templates />} path={INFRASTRUCTURE.TEMPLATES} />
           <Route
             element={<CreateTemplate />}
-            path="platforms/:platformId/create-template"
+            path={INFRASTRUCTURE.CREATE_TEMPLATE}
           />
-          <Route element={<Sensors />} path="/templates/:templateId" />
-          <Route element={<Sensor />} path="/sensors/:sensorId" />
+          <Route element={<Sensors />} path={INFRASTRUCTURE.SENSORS_LIST} />
+          <Route element={<Sensor />} path={INFRASTRUCTURE.SENSOR} />
           <Route
             element={<CreateSensor />}
-            path="templates/:template_id/create-sensor"
+            path={INFRASTRUCTURE.CREATE_SENSOR}
           />
-          <Route element={<About />} path="/about" />
+          <Route element={<About />} path={INFRASTRUCTURE.ABOUT} />
         </Routes>
       </div>
     </div>

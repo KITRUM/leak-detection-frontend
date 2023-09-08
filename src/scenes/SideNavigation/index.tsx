@@ -1,3 +1,4 @@
+// TODO delete this lib and use only needed svg icons
 import { HomeIcon, MapIcon, GiftIcon } from "@heroicons/react/20/solid";
 import NavLink from "@/elements/NavLink/NavLink";
 import logo from "/logo.svg";
@@ -10,7 +11,7 @@ const SideNavigation = () => {
         <NavLink name="Platforms" slug="/platforms" icon={<MapIcon />} />
         <NavLink name="About" slug="/about" icon={<GiftIcon />} />
       </nav>
-      <div className="">
+      <div>
         <img src={logo} alt="Franatech logo" />
       </div>
     </div>

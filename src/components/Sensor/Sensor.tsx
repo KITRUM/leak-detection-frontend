@@ -10,7 +10,7 @@ import {
   connectAnomalyDetections,
   connectTimeSeriesData,
 } from "@/services/sensor";
-import { getChartData } from "@/components/Sensor/getChartData";
+import { getChartData } from "@/utils/getChartData";
 import Toggler from "@/elements/Toggler/Toggler";
 
 const Sensor = () => {
@@ -51,8 +51,8 @@ const Sensor = () => {
 
     interactiveFeedbackModeStatus();
 
-    const socketTimeSeriesData = connectTimeSeriesData(sensorId!);
-    const socketAnomalyDetections = connectAnomalyDetections(sensorId!);
+    const socketTimeSeriesData = connectTimeSeriesData(+sensorId!);
+    const socketAnomalyDetections = connectAnomalyDetections(+sensorId!);
 
     socketTimeSeriesData.onmessage = (event) => {
       const response: Response<TimeSeriesData> = JSON.parse(event.data);

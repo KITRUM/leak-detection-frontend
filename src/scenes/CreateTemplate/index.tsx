@@ -1,4 +1,4 @@
-import CreateTemplateForm from "@/components/CreateTemplateForm";
+import CreateTemplateForm from "@/components/CreateTemplateForm/CreateTemplateForm";
 
 const CreateTemplate = () => {
   return <CreateTemplateForm />;
