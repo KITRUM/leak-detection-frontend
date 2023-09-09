@@ -9,12 +9,15 @@ enum ANOMALY_DEVIATION_COLORS {
 
 export const getChartData = (
   timeSeriesData: TimeSeriesData[],
-  anomalyDetections: AnomalyDetection[]
+  anomalyDetections: AnomalyDetection[],
+  showTimeStamp?: boolean
 ) => {
   return {
     labels: timeSeriesData.map((tsd) => {
       const asDate = new Date(tsd.timestamp);
-      return `${asDate.getFullYear()}-${asDate.getMonth()}-${asDate.getDate()}  ${asDate.getHours()}:${asDate.getMinutes()}`;
+      return showTimeStamp
+        ? `${asDate.getFullYear()}-${asDate.getMonth()}-${asDate.getDate()}  ${asDate.getHours()}:${asDate.getMinutes()}`
+        : "";
     }) as string[],
     datasets: [
       {

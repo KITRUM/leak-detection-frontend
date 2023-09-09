@@ -37,7 +37,7 @@ const DashBoardSensorList = () => {
   }, []);
 
   return (
-    <div className="w-full h-full grid grid-cols-2 p-8 gap-8">
+    <div className="w-full h-full grid grid-cols-3 p-2 gap-8">
       {pinnedSensors.map((sensor) => {
         return (
           <DashboardSensor
