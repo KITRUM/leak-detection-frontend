@@ -14,16 +14,21 @@ const Sensor = () => {
   const { sensorId } = useParams<{ sensorId: string }>();
   const timeSeriesData = useTimeSeriesDataSocket(+sensorId!);
   const anomalyDetections = useAnomalyDetectionsSocket(+sensorId!);
-  const chartData = getChartData(timeSeriesData, anomalyDetections, true);
+  const chartData = getChartData(timeSeriesData, anomalyDetections);
   const [interactiveFeedbackMode, setInteractiveFeedbackMode] =
     useState<boolean>(false);
   const [isEstimation, setIsEstimation] = useState(false);
 
   const toggleInteractiveFeedbackMode = async () => {
-    const newMode = !interactiveFeedbackMode;
-    await sensorInteractiveFeedbackModeUpdate(Number(sensorId), newMode);
-    setInteractiveFeedbackMode(newMode);
+    const estimationMod = await sensorInteractiveFeedbackModeUpdate(
+      Number(sensorId)
+    );
+
+    if (estimationMod) {
+      setInteractiveFeedbackMode(estimationMod);
+    }
   };
+
   // TODO add logic after backend
   const toggleEstimation = () => {
     setIsEstimation(!isEstimation);
@@ -35,7 +40,7 @@ const Sensor = () => {
         const interactiveFeedbackMode = await getSensorInteractiveFeedbackMode(
           +sensorId!
         );
-        if (interactiveFeedbackMode) {
+        if (typeof interactiveFeedbackMode === "boolean") {
           setInteractiveFeedbackMode(interactiveFeedbackMode);
         }
       } catch (error) {

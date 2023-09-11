@@ -33,19 +33,12 @@ export const getSensorInteractiveFeedbackMode = async (sensorId: number) => {
   }
 };
 
-export const sensorInteractiveFeedbackModeUpdate = async (
-  sensorId: number,
-  mode: boolean
-) => {
+export const sensorInteractiveFeedbackModeUpdate = async (sensorId: number) => {
   try {
-    const payload = {
-      configuration: {
-        interactiveFeedbackMode: mode,
-      },
-    };
-
-    const response = await api.patch(`/sensors/${sensorId}`, payload);
-    return response.data.result as TSensor;
+    const response = await api.patch(
+      `/sensors/${sensorId}/interactive-feedback-mode/toggle`
+    );
+    return response.data.result.configuration.interactiveFeedbackMode;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
@@ -62,16 +55,10 @@ export const createSensor = async (templateId: number, data: TFormData) => {
   }
 };
 
-export const sensorUpdatePin = async (sensorId: number, isPinned: boolean) => {
+export const sensorTogglePin = async (sensorId: number) => {
   try {
-    const payload = {
-      configuration: {
-        pinned: isPinned,
-      },
-    };
-
-    const response = await api.patch(`/sensors/${sensorId}`, payload);
-    return response.data.result.configuration.pinned as TSensor;
+    const response = await api.patch(`/sensors/${sensorId}/pin/toggle`);
+    return response.data.result.configuration.pinned;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);

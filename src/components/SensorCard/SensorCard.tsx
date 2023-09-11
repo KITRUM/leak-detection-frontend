@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { TSensor, TSensorEvent } from "@/types";
 import { connectSensorEvents } from "@/services/sensor";
 import Pin from "@/elements/Pin/Pin";
-import { sensorUpdatePin } from "@/services/sensors";
+import { sensorTogglePin } from "@/services/sensors";
 import Spinner from "@/elements/Spinner/Spinner";
 
 type TSensorCard = {
@@ -31,8 +31,6 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
     socketSensorEvents.onmessage = (event) => {
       const response = JSON.parse(event.data);
       const { type } = response.result as TSensorEvent;
-      // eslint-disable-next-line no-console
-      console.log("sensor id:", sensor.id, "received event:", type);
       setSensorCardColor(
         SENSOR_EVENT_COLOR[type as keyof typeof SENSOR_EVENT_COLOR]
       );
@@ -46,12 +44,12 @@ const SensorCard: React.FC<TSensorCard> = ({ baseSlug, sensor }) => {
   const handlePinClick = async () => {
     setIsPinLoading(true);
 
-    const sensorPinnedStatus = await sensorUpdatePin(
-      sensor.id,
-      !isSensorPinned
-    );
+    const sensorPinnedStatus = await sensorTogglePin(sensor.id);
 
-    setIsSensorPinned(!!sensorPinnedStatus);
+    if (typeof sensorPinnedStatus === "boolean") {
+      setIsSensorPinned(sensorPinnedStatus);
+    }
+
     setIsPinLoading(false);
   };
 
