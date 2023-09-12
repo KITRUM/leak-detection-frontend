@@ -33,16 +33,18 @@ export const getSensorInteractiveFeedbackMode = async (sensorId: number) => {
   }
 };
 
-export const sensorInteractiveFeedbackModeUpdate = async (sensorId: number) => {
+export const sensorInteractiveFeedbackModeToggle = async (sensorId: number) => {
   try {
     const response = await api.patch(
       `/sensors/${sensorId}/interactive-feedback-mode/toggle`
     );
     return response.data.result.configuration.interactiveFeedbackMode;
   } catch (error) {
-    if (error.respnose.status === 422) {
-      alert(
-        "Can not toggle interactive feedback mode until enough time series data items are collected"
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (error.response.status === 422) {
+      throw new Error(
+        "You can not toggle interactive feedback mode until enough time series data items are collected."
       );
     } else {
       // eslint-disable-next-line no-console

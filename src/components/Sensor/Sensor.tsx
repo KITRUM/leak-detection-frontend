@@ -3,12 +3,13 @@ import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import {
   getSensorInteractiveFeedbackMode,
-  sensorInteractiveFeedbackModeUpdate,
+  sensorInteractiveFeedbackModeToggle,
 } from "@/services/sensors";
 import { getChartData } from "@/utils/getChartData";
 import Toggler from "@/elements/Toggler/Toggler";
 import { useTimeSeriesDataSocket } from "@/hooks/useTimeSeriesDataSocket";
 import { useAnomalyDetectionsSocket } from "@/hooks/useAnomalyDetectionsSocket";
+import { useModal } from "@/context/ModalContext";
 
 const Sensor = () => {
   const { sensorId } = useParams<{ sensorId: string }>();
@@ -17,28 +18,27 @@ const Sensor = () => {
   const chartData = getChartData(timeSeriesData, anomalyDetections);
   const [interactiveFeedbackMode, setInteractiveFeedbackMode] =
     useState<boolean>(false);
-  const [isEstimation, setIsEstimation] = useState(false);
+  const [isSimulation, setIsSimulation] = useState(false);
+  const { openModal } = useModal();
+  const toggleInteractiveFeedbackModeModal = (message: string) =>
+    openModal(message);
 
   const toggleInteractiveFeedbackMode = async () => {
     try {
-      const estimationMod = await sensorInteractiveFeedbackModeUpdate(
+      const toggled = await sensorInteractiveFeedbackModeToggle(
         Number(sensorId)
       );
-
-      if (typeof estimationMod === "boolean") {
-        setInteractiveFeedbackMode(estimationMod);
-      }
+      setInteractiveFeedbackMode(toggled);
     } catch (error) {
-      if (error.response.status === 404) {
-        alert("Sensor not found");
-      }
-      console.error("Error updating the sensor:", error);
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      toggleInteractiveFeedbackModeModal(error.message);
     }
   };
 
   // TODO add logic after backend
-  const toggleEstimation = () => {
-    setIsEstimation(!isEstimation);
+  const toggleSimulation = () => {
+    setIsSimulation(!isSimulation);
   };
 
   useEffect(() => {
@@ -62,9 +62,9 @@ const Sensor = () => {
       </h1>
       <div className="flex justify-start">
         <Toggler
-          label="Estimation"
-          isChecked={isEstimation}
-          changeHandler={toggleEstimation}
+          label="Simulation"
+          isChecked={isSimulation}
+          changeHandler={toggleSimulation}
         />
         <Toggler
           label="Interactive Feedback Mode"
