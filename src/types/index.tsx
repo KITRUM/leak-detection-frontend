@@ -30,6 +30,7 @@ export type TTemplate = {
 
 export type TSensorConfiguration = {
   interactiveFeedbackMode: boolean;
+  pinned: boolean;
 };
 
 export type TSensor = {

@@ -1,87 +1,58 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { AnomalyDetection, Response, TimeSeriesData } from "@/types";
 import { Line } from "react-chartjs-2";
 import {
   getSensorInteractiveFeedbackMode,
-  sensorInteractiveFeedbackModeUpdate,
+  sensorInteractiveFeedbackModeToggle,
 } from "@/services/sensors";
-import {
-  connectAnomalyDetections,
-  connectTimeSeriesData,
-} from "@/services/sensor";
-import { getChartData } from "@/components/Sensor/getChartData";
+import { getChartData } from "@/utils/getChartData";
 import Toggler from "@/elements/Toggler/Toggler";
+import { useTimeSeriesDataSocket } from "@/hooks/useTimeSeriesDataSocket";
+import { useAnomalyDetectionsSocket } from "@/hooks/useAnomalyDetectionsSocket";
+import { useModal } from "@/context/ModalContext";
 
 const Sensor = () => {
   const { sensorId } = useParams<{ sensorId: string }>();
-  const [timeSeriesData, setTimeSeriesData] = useState<TimeSeriesData[]>([]);
-  const [anomalyDetections, setAnomalyDetections] = useState<
-    AnomalyDetection[]
-  >([]);
+  const timeSeriesData = useTimeSeriesDataSocket(+sensorId!);
+  const anomalyDetections = useAnomalyDetectionsSocket(+sensorId!);
+  const chartData = getChartData(timeSeriesData, anomalyDetections);
   const [interactiveFeedbackMode, setInteractiveFeedbackMode] =
     useState<boolean>(false);
-  const [isEstimation, setIsEstimation] = useState(false);
-
-  const chartData = getChartData(timeSeriesData, anomalyDetections);
+  const [isSimulation, setIsSimulation] = useState(false);
+  const { openModal } = useModal();
+  const toggleInteractiveFeedbackModeModal = (message: string) =>
+    openModal(message);
 
   const toggleInteractiveFeedbackMode = async () => {
-    const newMode = !interactiveFeedbackMode;
-    await sensorInteractiveFeedbackModeUpdate(Number(sensorId), newMode);
-    setInteractiveFeedbackMode(newMode);
+    try {
+      const toggled = await sensorInteractiveFeedbackModeToggle(
+        Number(sensorId)
+      );
+      setInteractiveFeedbackMode(toggled);
+    } catch (error) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      toggleInteractiveFeedbackModeModal(error.message);
+    }
   };
 
-  const toggleEstimation = () => {
-    setIsEstimation(!isEstimation);
+  // TODO add logic after backend
+  const toggleSimulation = () => {
+    setIsSimulation(!isSimulation);
   };
 
   useEffect(() => {
     const interactiveFeedbackModeStatus = async () => {
-      try {
-        const interactiveFeedbackMode = await getSensorInteractiveFeedbackMode(
-          +sensorId!
-        );
-        if (interactiveFeedbackMode) {
-          setInteractiveFeedbackMode(interactiveFeedbackMode);
-        }
-      } catch (error) {
-        console.error("Error retrieving the sensor:", error);
+      const interactiveFeedbackMode = await getSensorInteractiveFeedbackMode(
+        +sensorId!
+      );
+
+      if (typeof interactiveFeedbackMode === "boolean") {
+        setInteractiveFeedbackMode(interactiveFeedbackMode);
       }
     };
 
     interactiveFeedbackModeStatus();
-
-    const socketTimeSeriesData = connectTimeSeriesData(sensorId!);
-    const socketAnomalyDetections = connectAnomalyDetections(sensorId!);
-
-    socketTimeSeriesData.onmessage = (event) => {
-      const response: Response<TimeSeriesData> = JSON.parse(event.data);
-
-      if (Array.isArray(response.result)) {
-        const tsdArray = response.result as TimeSeriesData[];
-        setTimeSeriesData(tsdArray);
-      } else {
-        const tsd = response.result as TimeSeriesData;
-        setTimeSeriesData((prevData) => [...prevData, tsd]);
-      }
-    };
-
-    socketAnomalyDetections.onmessage = (event) => {
-      const response: Response<AnomalyDetection> = JSON.parse(event.data);
-
-      if (Array.isArray(response.result)) {
-        const result = response.result as AnomalyDetection[];
-        setAnomalyDetections(result);
-      } else {
-        const result = response.result as AnomalyDetection;
-        setAnomalyDetections((prevData) => [...prevData, result]);
-      }
-    };
-
-    return () => {
-      socketTimeSeriesData.close();
-      socketAnomalyDetections.close();
-    };
   }, []);
 
   return (
@@ -91,9 +62,9 @@ const Sensor = () => {
       </h1>
       <div className="flex justify-start">
         <Toggler
-          label="Estimation"
-          isChecked={isEstimation}
-          changeHandler={toggleEstimation}
+          label="Simulation"
+          isChecked={isSimulation}
+          changeHandler={toggleSimulation}
         />
         <Toggler
           label="Interactive Feedback Mode"

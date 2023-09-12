@@ -5,7 +5,7 @@ import { TFormData } from "@/components/CreateSensorForm/validation.schema";
 export const getSensorsForTemplate = async (templateId: number) => {
   try {
     const response = await api.get(`/templates/${templateId}/sensors`);
-    return response.data.result;
+    return response.data.result as TSensor[];
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
@@ -33,22 +33,23 @@ export const getSensorInteractiveFeedbackMode = async (sensorId: number) => {
   }
 };
 
-export const sensorInteractiveFeedbackModeUpdate = async (
-  sensorId: number,
-  mode: boolean
-) => {
+export const sensorInteractiveFeedbackModeToggle = async (sensorId: number) => {
   try {
-    const payload = {
-      configuration: {
-        interactiveFeedbackMode: mode,
-      },
-    };
-
-    const response = await api.patch(`/sensors/${sensorId}`, payload);
-    return response.data.result as TSensor;
+    const response = await api.patch(
+      `/sensors/${sensorId}/interactive-feedback-mode/toggle`
+    );
+    return response.data.result.configuration.interactiveFeedbackMode;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    if (error.response.status === 422) {
+      throw new Error(
+        "You can not toggle interactive feedback mode until enough time series data items are collected."
+      );
+    } else {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
   }
 };
 
@@ -56,6 +57,26 @@ export const createSensor = async (templateId: number, data: TFormData) => {
   try {
     const response = await api.post(`/templates/${templateId}/sensors`, data);
     return response.status;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};
+
+export const sensorTogglePin = async (sensorId: number) => {
+  try {
+    const response = await api.patch(`/sensors/${sensorId}/pin/toggle`);
+    return response.data.result.configuration.pinned;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  }
+};
+
+export const getPinnedSensors = async () => {
+  try {
+    const response = await api.get("/sensors?pinned=true");
+    return response.data.result as TSensor[];
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);

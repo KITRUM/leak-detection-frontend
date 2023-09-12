@@ -1,4 +1,4 @@
-import CreateSensorForm from "@/components/CreateSensorForm";
+import CreateSensorForm from "@/components/CreateSensorForm/CreateSensorForm";
 
 const CreateSensor = () => {
   return <CreateSensorForm />;

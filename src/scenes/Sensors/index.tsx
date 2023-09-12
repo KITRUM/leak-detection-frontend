@@ -20,12 +20,16 @@ const Sensors = () => {
       try {
         if (templateId) {
           const sensorsData = await getSensorsForTemplate(+templateId);
-          setSensors(sensorsData);
+
+          if (sensorsData) {
+            setSensors(sensorsData);
+          }
         }
       } catch (error) {
         console.error("Error fetching templates:", error);
       }
     };
+
     fetchSensors();
   }, []);
 

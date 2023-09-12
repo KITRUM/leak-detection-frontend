@@ -1,3 +1,5 @@
+import DashBoardSensorList from "@/components/DashBoardSensorList/DashBoardSensorList";
+
 export default function Dashboard() {
-  return <div>Dashboard is not implemented right now</div>;
+  return <DashBoardSensorList />;
 }
