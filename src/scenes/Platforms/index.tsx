@@ -10,11 +10,7 @@ const Platforms = () => {
 
   return (
     <>
-      <div className="flex justify-between min-h-[58px] py-2 px-4">
-        <h1 className="block w-min pt-5 text-xl leading-4 text-text-gray-300">
-          Platforms
-        </h1>
-      </div>
+      <div className="flex justify-between min-h-[58px] py-2 px-4"></div>
       {!platforms && <div className="p-6">No platform loaded</div>}
       {platforms && (
         <PlatformList baseSlug="/platforms/" platforms={platforms} />

@@ -20,6 +20,7 @@ export const sensorRetrieve = async (sensorId: number) => {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);
+    throw new Error(`Error fetching sensor ${sensorId}`);
   }
 };
 
