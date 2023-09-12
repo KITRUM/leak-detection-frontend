@@ -20,12 +20,19 @@ const Sensor = () => {
   const [isEstimation, setIsEstimation] = useState(false);
 
   const toggleInteractiveFeedbackMode = async () => {
-    const estimationMod = await sensorInteractiveFeedbackModeUpdate(
-      Number(sensorId)
-    );
+    try {
+      const estimationMod = await sensorInteractiveFeedbackModeUpdate(
+        Number(sensorId)
+      );
 
-    if (estimationMod) {
-      setInteractiveFeedbackMode(estimationMod);
+      if (typeof estimationMod === "boolean") {
+        setInteractiveFeedbackMode(estimationMod);
+      }
+    } catch (error) {
+      if (error.response.status === 404) {
+        alert("Sensor not found");
+      }
+      console.error("Error updating the sensor:", error);
     }
   };
 
@@ -36,15 +43,12 @@ const Sensor = () => {
 
   useEffect(() => {
     const interactiveFeedbackModeStatus = async () => {
-      try {
-        const interactiveFeedbackMode = await getSensorInteractiveFeedbackMode(
-          +sensorId!
-        );
-        if (typeof interactiveFeedbackMode === "boolean") {
-          setInteractiveFeedbackMode(interactiveFeedbackMode);
-        }
-      } catch (error) {
-        console.error("Error retrieving the sensor:", error);
+      const interactiveFeedbackMode = await getSensorInteractiveFeedbackMode(
+        +sensorId!
+      );
+
+      if (typeof interactiveFeedbackMode === "boolean") {
+        setInteractiveFeedbackMode(interactiveFeedbackMode);
       }
     };
 

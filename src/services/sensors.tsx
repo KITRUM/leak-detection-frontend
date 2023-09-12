@@ -40,8 +40,14 @@ export const sensorInteractiveFeedbackModeUpdate = async (sensorId: number) => {
     );
     return response.data.result.configuration.interactiveFeedbackMode;
   } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
+    if (error.respnose.status === 422) {
+      alert(
+        "Can not toggle interactive feedback mode until enough time series data items are collected"
+      );
+    } else {
+      // eslint-disable-next-line no-console
+      console.log(error);
+    }
   }
 };
 
