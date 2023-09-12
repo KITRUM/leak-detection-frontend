@@ -28,16 +28,17 @@ const Templates = () => {
   return (
     <>
       <div className="flex justify-between py-2 px-4">
+        <h1 className="block pt-5 text-xl leading-4 text-text-gray-300 min-w-0">
+          Templates
+        </h1>
         <LinkButton
           name="Create template"
           slug={`/platforms/${platformId}/create-template`}
         />
       </div>
-      {!templates && <EmptySceneMessage message="No templates are added yet" />}
+      {!templates && <EmptySceneMessage message="No templates loaded" />}
       {templates && (
-        <>
-          <TemplateCardList baseSlug="/templates/" templates={templates} />
-        </>
+        <TemplateCardList baseSlug="/templates/" templates={templates} />
       )}
     </>
   );

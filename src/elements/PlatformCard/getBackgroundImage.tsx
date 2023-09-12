@@ -6,6 +6,8 @@ export const getBackgroundImage = (platformId: number) => {
       return "bg-[url('src/assets/platform-2.WebP')]";
     case 3:
       return "bg-[url('src/assets/platform-3.WebP')]";
+    case 4:
+      return "bg-[url('src/assets/platform-4.WebP')]";
     default:
       return "";
   }

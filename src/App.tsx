@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import SideNavigation from "@/scenes/SideNavigation";
 import Dashboard from "@/scenes/Dashboard";
 import About from "@/scenes/About";
-import Templates from "@/scenes/Templates";
+import Templates from "./scenes/Templates/Templates";
 import Platforms from "@/scenes/Platforms";
 import Sensors from "@/scenes/Sensors";
 import Sensor from "@/components/Sensor/Sensor";
