@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { TTemplate } from "@/types";
 import LinkButton from "@/elements/LinkButton/LinkButton";
 import EmptySceneMessage from "@/elements/EmptySceneMessage";
+import { Maybe } from "yup";
 
 const Templates = () => {
   const [templates, setTemplates] = useState<TTemplate[] | []>([]);
@@ -12,13 +13,14 @@ const Templates = () => {
 
   useEffect(() => {
     const fetchTemplates = async () => {
-      try {
-        if (platformId) {
-          const templatesData = await getTemplatesForPlatform(+platformId);
+      if (platformId) {
+        const templatesData: Maybe<TTemplate[]> = await getTemplatesForPlatform(
+          +platformId
+        );
+
+        if (templatesData) {
           setTemplates(templatesData);
         }
-      } catch (error) {
-        console.error("Error fetching templates:", error);
       }
     };
 
@@ -33,11 +35,10 @@ const Templates = () => {
           slug={`/platforms/${platformId}/create-template`}
         />
       </div>
-      {!templates && <EmptySceneMessage message="No templates are added yet" />}
-      {templates && (
-        <>
-          <TemplateCardList baseSlug="/templates/" templates={templates} />
-        </>
+      {templates ? (
+        <TemplateCardList baseSlug="/templates/" templates={templates} />
+      ) : (
+        <EmptySceneMessage message="No templates are added yet" />
       )}
     </>
   );

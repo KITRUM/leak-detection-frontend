@@ -6,6 +6,7 @@ import {
 } from "@/components/CreateSensorForm/validation.schema";
 import { initialValues } from "@/components/CreateSensorForm/initialValues";
 import { createSensor } from "@/services/sensors";
+import PrimaryButton from "@/elements/PrimaryButton/PrimaryButton";
 
 type MyFormikHelpers = FormikHelpers<TFormData> & {
   setValues: (values: TFormData, shouldValidate?: boolean) => void;
@@ -13,19 +14,20 @@ type MyFormikHelpers = FormikHelpers<TFormData> & {
 
 const CreateSensorForm = () => {
   const { openModal } = useModal();
-  const openSensorCreatedModal = () => openModal("Sensor successfully created");
+  const openSuccessModal = () =>
+    openModal("Sensor successfully created", "success");
+  const openErrorModal = () => openModal("Sensor was not created", "error");
 
   const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
-    try {
-      const response = await createSensor(1, data);
+    const response = await createSensor(1, data);
 
-      if (response === 201) {
-        actions.setSubmitting(false);
-        actions.resetForm();
-        openSensorCreatedModal();
-      }
-    } catch (error) {
-      console.error("Error submitting form data:", error);
+    if (response === 201) {
+      actions.setSubmitting(false);
+      actions.resetForm();
+      openSuccessModal();
+    } else {
+      actions.setSubmitting(false);
+      openErrorModal();
     }
   };
 
@@ -116,12 +118,7 @@ const CreateSensorForm = () => {
               </div>
             </div>
             <div className="flex justify-center">
-              <button
-                type="submit"
-                className="flex items-center justify-center min-w-max px-6 py-2 rounded border border-transparent bg-primary-blue text-base text-white shadow-lg duration-300 hover:bg-white hover:text-primary-blue hover:border hover:border-primary-blue"
-              >
-                Submit
-              </button>
+              <PrimaryButton name="Create sensor" type="submit" />
             </div>
           </Form>
         </Formik>

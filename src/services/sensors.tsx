@@ -12,22 +12,10 @@ export const getSensorsForTemplate = async (templateId: number) => {
   }
 };
 
-//TODO delete if not used in the future
 export const sensorRetrieve = async (sensorId: number) => {
   try {
     const response = await api.get(`/sensors/${sensorId}`);
     return response.data.result as TSensor;
-  } catch (error) {
-    // eslint-disable-next-line no-console
-    console.log(error);
-    throw new Error(`Error fetching sensor ${sensorId}`);
-  }
-};
-
-export const getSensorInteractiveFeedbackMode = async (sensorId: number) => {
-  try {
-    const response = await api.get(`/sensors/${sensorId}`);
-    return response.data.result.configuration.interactiveFeedbackMode;
   } catch (error) {
     // eslint-disable-next-line no-console
     console.log(error);

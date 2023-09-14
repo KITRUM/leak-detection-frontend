@@ -6,6 +6,7 @@ import {
 import { initialValues } from "@/components/CreateTemplateForm/initialValues";
 import { createTemplate } from "@/services/templates";
 import { useModal } from "@/context/ModalContext";
+import PrimaryButton from "@/elements/PrimaryButton/PrimaryButton";
 
 type MyFormikHelpers = FormikHelpers<TFormData> & {
   setValues: (values: TFormData, shouldValidate?: boolean) => void;
@@ -13,19 +14,20 @@ type MyFormikHelpers = FormikHelpers<TFormData> & {
 
 const CreateTemplate = () => {
   const { openModal } = useModal();
-  const openTemplateCreatedModal = () =>
-    openModal("Template successfully created");
-  const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
-    try {
-      const response = await createTemplate(1, data);
+  const openSuccessModal = () =>
+    openModal("Template successfully created", "success");
+  const openErrorModal = () => openModal("Template was not created", "error");
 
-      if (response === 201) {
-        actions.setSubmitting(false);
-        actions.resetForm();
-        openTemplateCreatedModal();
-      }
-    } catch (error) {
-      console.error("Error submitting form data:", error);
+  const onSubmit = async (data: TFormData, actions: MyFormikHelpers) => {
+    const response = await createTemplate(1, data);
+
+    if (response === 201) {
+      actions.setSubmitting(false);
+      actions.resetForm();
+      openSuccessModal();
+    } else {
+      actions.setSubmitting(false);
+      openErrorModal();
     }
   };
 
@@ -377,12 +379,7 @@ const CreateTemplate = () => {
               </div>
             </div>
             <div className="flex justify-center">
-              <button
-                type="submit"
-                className="flex items-center justify-center min-w-max px-6 py-2 rounded border border-transparent bg-primary-blue text-base text-white shadow-lg duration-300 hover:bg-white hover:text-primary-blue hover:border hover:border-primary-blue"
-              >
-                Submit
-              </button>
+              <PrimaryButton name="Create template" type="submit" />
             </div>
           </Form>
         </Formik>
