@@ -61,13 +61,15 @@ export type AnomalyDetection = {
   timeSeriesData: TimeSeriesData;
 };
 
-export type SensorRetrieveItem = {
-  ppmv: number;
-  timestamp: Date;
-  deviation: string | null;
-  configuration: TSensorConfiguration;
-};
+// export type SensorRetrieveItem = {
+//   ppmv: number;
+//   timestamp: Date;
+//   deviation: string | null;
+//   configuration: TSensorConfiguration;
+// };
 
 export type Response<Type> = {
   result: Type | Type[];
 };
+
+export type TModalStatus = "success" | "error";

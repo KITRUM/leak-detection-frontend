@@ -6,6 +6,7 @@ import SensorsCardsList from "@/components/SensorsCardsList/SensorsCardsList";
 import Chart from "chart.js/auto";
 import { CategoryScale } from "chart.js";
 import LinkButton from "@/elements/LinkButton/LinkButton";
+import EmptySceneMessage from "@/elements/EmptySceneMessage";
 
 Chart.register(CategoryScale);
 
@@ -35,13 +36,13 @@ const Sensors = () => {
 
   return (
     <>
-      <div className="flex justify-between py-2 px-4">
+      <div className="flex justify-end py-2 px-4">
         <LinkButton
           name="Create sensor"
           slug={`/templates/${templateId}/create-sensor`}
         />
       </div>
-      {!sensors && <div className="p-6">No sensors for this template</div>}
+      {!sensors && <EmptySceneMessage message="No sensors for this template" />}
       {sensors && <SensorsCardsList baseSlug="/sensors/" sensors={sensors} />}
     </>
   );

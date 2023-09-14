@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import { getSensorsForTemplate } from "@/services/sensors";
 import SensorsCardsList from "@/components/SensorsCardsList/SensorsCardsList";
 import { TSensor } from "@/types";
+import { Maybe } from "yup";
+import EmptySceneMessage from "@/elements/EmptySceneMessage";
 
 type TTemplateCard = {
   baseSlug: string;
@@ -14,20 +16,19 @@ type TTemplateCard = {
 
 const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
   const [sensors, setSensors] = useState<TSensor[] | []>([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSensors = async () => {
-      try {
-        if (template.id) {
-          const sensorsData = await getSensorsForTemplate(+template.id);
-          if (sensorsData) {
-            setSensors(sensorsData);
-          }
+      if (template.id) {
+        const sensorsData: Maybe<TSensor[]> = await getSensorsForTemplate(
+          +template.id
+        );
+        if (sensorsData) {
+          setSensors(sensorsData);
         }
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.log("Error while fetching sensors");
       }
+      setIsLoading(false);
     };
     fetchSensors();
   }, []);
@@ -43,7 +44,11 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
       <h2 className="block text-md text-text-gray border-b border-text-outline">
         {template.name}
       </h2>
-      {sensors && <SensorsCardsList sensors={sensors} />}
+      {sensors.length === 0 ? (
+        !loading && <EmptySceneMessage message="No sensors are loaded" />
+      ) : (
+        <SensorsCardsList sensors={sensors} />
+      )}
     </Link>
   );
 };

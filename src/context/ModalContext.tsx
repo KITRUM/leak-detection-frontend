@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useState } from "react";
 import Modal from "@/components/Modal/Modal";
+import { TModalStatus } from "@/types";
 
 interface ModalContextType {
-  openModal: (message: string) => void;
+  openModal: (message: string, status: TModalStatus) => void;
   closeModal: () => void;
   isModalOpen: boolean;
-  modalMessage: string;
 }
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
@@ -23,25 +23,30 @@ export const ModalProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+  const [modalStatus, setModalStatus] = useState<TModalStatus>("success");
 
-  const openModal = (message: string) => {
+  const openModal = (message: string, status: TModalStatus) => {
     setModalMessage(message);
+    setModalStatus(status);
     setIsModalOpen(true);
     document.body.classList.add("modal-open");
   };
 
   const closeModal = () => {
     setModalMessage("");
+    setModalStatus("success");
     setIsModalOpen(false);
     document.body.classList.remove("modal-open");
   };
 
   return (
-    <ModalContext.Provider
-      value={{ openModal, closeModal, isModalOpen, modalMessage }}
-    >
+    <ModalContext.Provider value={{ openModal, closeModal, isModalOpen }}>
       {isModalOpen && (
-        <Modal onClose={closeModal} modalMessage={modalMessage} />
+        <Modal
+          onClose={closeModal}
+          modalMessage={modalMessage}
+          status={modalStatus}
+        />
       )}
       {children}
     </ModalContext.Provider>

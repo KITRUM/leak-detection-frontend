@@ -6,25 +6,43 @@ import {
   sensorInteractiveFeedbackModeToggle,
   sensorRetrieve,
 } from "@/services/sensors";
-import { getChartData } from "@/utils/getChartData";
 import Toggler from "@/elements/Toggler/Toggler";
 import { useTimeSeriesDataSocket } from "@/hooks/useTimeSeriesDataSocket";
 import { useAnomalyDetectionsSocket } from "@/hooks/useAnomalyDetectionsSocket";
 import { useModal } from "@/context/ModalContext";
 import EmptySceneMessage from "@/elements/EmptySceneMessage";
+import { getChartData } from "@/utils/getChartData";
+import { Maybe } from "yup";
 
 const Sensor = () => {
   const { sensorId } = useParams<{ sensorId: string }>();
   const timeSeriesData = useTimeSeriesDataSocket(+sensorId!);
   const anomalyDetections = useAnomalyDetectionsSocket(+sensorId!);
   const chartData = getChartData(timeSeriesData, anomalyDetections);
+  const [currentSensor, setCurrentSensor] = useState<TSensor | null>(null);
+
   const [interactiveFeedbackMode, setInteractiveFeedbackMode] =
     useState<boolean>(false);
   const [isSimulation, setIsSimulation] = useState(false);
+
   const { openModal } = useModal();
   const toggleInteractiveFeedbackModeModal = (message: string) =>
-    openModal(message);
-  const [currentSensor, setCurrentSensor] = useState<TSensor | null>(null);
+    openModal(message, "error");
+
+  useEffect(() => {
+    const fetchSensor = async () => {
+      const sensor: Maybe<TSensor> = await sensorRetrieve(+sensorId!);
+
+      if (sensor) {
+        setCurrentSensor(sensor);
+        setInteractiveFeedbackMode(
+          sensor.configuration.interactiveFeedbackMode
+        );
+      }
+    };
+
+    fetchSensor();
+  }, []);
 
   const toggleInteractiveFeedbackMode = async () => {
     try {
@@ -44,19 +62,9 @@ const Sensor = () => {
     setIsSimulation(!isSimulation);
   };
 
-  useEffect(() => {
-    const fetchSensor = async () => {
-      const sensor: TSensor = await sensorRetrieve(+sensorId!);
-      setCurrentSensor(sensor);
-      setInteractiveFeedbackMode(sensor.configuration.interactiveFeedbackMode);
-    };
-
-    fetchSensor();
-  }, []);
-
   return (
-    <>
-      {currentSensor && (
+    <div className="w-full h -full">
+      {currentSensor ? (
         <div className="p-2">
           <h1 className="block p-2 text-xl leading-4 text-text-gray-300">
             Sensor: {currentSensor.name}
@@ -75,9 +83,10 @@ const Sensor = () => {
           </div>
           <Line data={chartData as never} />
         </div>
+      ) : (
+        <EmptySceneMessage message="No sensor is added yet" />
       )}
-      {!currentSensor && <EmptySceneMessage message="No sensor is added yet" />}
-    </>
+    </div>
   );
 };
 
