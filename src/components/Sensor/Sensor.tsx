@@ -20,6 +20,7 @@ const Sensor = () => {
   const anomalyDetections = useAnomalyDetectionsSocket(+sensorId!);
   const chartData = getChartData(timeSeriesData, anomalyDetections);
   const [currentSensor, setCurrentSensor] = useState<TSensor | null>(null);
+  const [loading, setIsLoading] = useState(true);
 
   const [interactiveFeedbackMode, setInteractiveFeedbackMode] =
     useState<boolean>(false);
@@ -39,6 +40,7 @@ const Sensor = () => {
           sensor.configuration.interactiveFeedbackMode
         );
       }
+      setIsLoading(false);
     };
 
     fetchSensor();
@@ -84,7 +86,9 @@ const Sensor = () => {
           <Line data={chartData as never} />
         </div>
       ) : (
-        <EmptySceneMessage message="No sensor is added yet" />
+        !loading && (
+          <EmptySceneMessage message="No sensors are pinned or loaded" />
+        )
       )}
     </div>
   );

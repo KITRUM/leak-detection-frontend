@@ -38,7 +38,7 @@ const TemplateCard: React.FC<TTemplateCard> = ({ baseSlug, template }) => {
       to={`${baseSlug}${template.id}`}
       key={template.id}
       className={
-        "min-h-[256px] w-full h-full flex flex-col gap-2 p-6 bg-white rounded-md shadow-card hover:scale-[1.05] duration-300"
+        "min-h-[274px] w-full h-full flex flex-col gap-2 p-6 bg-white rounded-md shadow-card hover:scale-[1.05] duration-300"
       }
     >
       <h2 className="block text-md text-text-gray border-b border-text-outline">
