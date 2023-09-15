@@ -6,6 +6,7 @@ import EmptySceneMessage from "@/elements/EmptySceneMessage";
 
 const DashBoardSensorList = () => {
   const [pinnedSensors, setPinnedSensors] = useState<TSensor[] | []>([]);
+  const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchSensors = async () => {
@@ -14,6 +15,7 @@ const DashBoardSensorList = () => {
       if (sensorsData) {
         setPinnedSensors(sensorsData);
       }
+      setIsLoading(false);
     };
 
     fetchSensors();
@@ -22,7 +24,9 @@ const DashBoardSensorList = () => {
   return (
     <>
       {pinnedSensors.length === 0 ? (
-        <EmptySceneMessage message="No sensors are pinned or loaded" />
+        !loading && (
+          <EmptySceneMessage message="No sensors are pinned or loaded" />
+        )
       ) : (
         <section className="w-full h-full grid grid-cols-2 p-2 gap-8">
           {pinnedSensors.map((sensor) => {
