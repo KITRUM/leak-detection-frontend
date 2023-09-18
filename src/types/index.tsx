@@ -73,3 +73,11 @@ export type Response<Type> = {
 };
 
 export type TModalStatus = "success" | "error";
+
+export type TSystemEventType = "alert_success" | "alert_critical" | "info";
+
+export type TSystemEvent = {
+  id: number;
+  message: string;
+  type: TSystemEventType;
+};
