@@ -8,7 +8,7 @@ interface ModalContextType {
   isModalOpen: boolean;
 }
 
-const ModalContext = createContext<ModalContextType | undefined>(undefined);
+const ModalContext = createContext<ModalContextType | null>(null);
 
 export const useModal = () => {
   const context = useContext(ModalContext);
