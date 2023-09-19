@@ -1,27 +1,29 @@
 export default function About() {
   return (
-    <div className="p-2">
-      Nam ornare sollicitudin consectetur. Nam elementum nisl ex, quis rhoncus
-      elit elementum nec. Sed nec leo vel massa lobortis mollis sed a felis.
-      Phasellus efficitur, est in sollicitudin facilisis, diam justo egestas
-      nunc, eget pulvinar libero magna vitae orci. Aenean quis viverra nisi.
-      Quisque rhoncus et nisi non tristique. Etiam eu dolor fermentum, maximus
-      leo et, luctus augue. Donec vel odio scelerisque, efficitur lacus vitae,
-      tristique orci. Nulla nisi nibh, consectetur a consequat quis, ullamcorper
-      a ipsum. Sed a rutrum ipsum. Curabitur gravida nulla nunc, in ultricies
-      velit luctus sed. Proin ac libero risus. diam justo egestas nunc, eget
-      pulvinar libero magna vitae orci. Aenean quis viverra nisi. Quisque
-      rhoncus et nisi non tristique. diam justo egestas nunc, eget pulvinar
-      libero magna vitae orci. Aenean quis viverra nisi. Quisque rhoncus et nisi
-      non tristique. Etiam eu dolor fermentum, maximus leo et, luctus augue.
-      Donec vel odio scelerisque, efficitur lacus vitae, tristique orci. Nulla
-      nisi nibh, consectetur a consequat quis, ullamcorper a ipsum. Sed a rutrum
-      ipsum. Curabitur gravida nulla nunc, in ultricies velit luctus sed. Proin
-      ac libero risus. Etiam eu dolor fermentum, maximus leo et, luctus augue.
-      Donec vel odio scelerisque, efficitur lacus vitae, tristique orci. Nulla
-      nisi nibh, consectetur a consequat quis, ullamcorper a ipsum. Sed a rutrum
-      ipsum. Curabitur gravida nulla nunc, in ultricies velit luctus sed. Proin
-      ac libero risus.
+    <div className="p-2 bg-gray-100 text-center mt-24 ml-48 mr-48 border-solid border-2 border-gray-600">
+      <pre>Version: 01.01</pre>
+
+      <pre>Developed by Franatech</pre>
+
+      <pre>Contact:</pre>
+
+      <pre>info@franatech.com</pre>
+
+      <pre>Franatech AS</pre>
+
+      <pre>Tollbugaten 24</pre>
+
+      <pre>0157 Oslo · Norway</pre>
+
+      <pre>Tel: +47 - 900 - 21 49 2</pre>
+
+      <pre>Franatech GmbH</pre>
+
+      <pre>Gewerbestraße 5</pre>
+
+      <pre>21391 Reppenstedt · Germany</pre>
+
+      <pre>Tel: +49 - 4131 - 7 89 28 0</pre>
     </div>
   );
 }
