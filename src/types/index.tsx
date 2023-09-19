@@ -1,6 +1,6 @@
-// The basic PlatformCard item contracttypes
+// The basic FieldCard item contracttypes
 
-export type Platform = {
+export type Field = {
   id: number;
   name: string;
 };
@@ -25,7 +25,7 @@ export type TTemplate = {
   length: number | null;
   width: number | null;
 
-  platformId: number;
+  fieldId: number;
 };
 
 export type TSensorConfiguration = {
