@@ -1,7 +1,7 @@
-import { Platform } from "@/types";
+import { Field } from "@/types";
 
-export function fetchPlatforms(): Platform[] {
-  // Fetch all Platforms that are added to the system
+export function fetchFields(): Field[] {
+  // Fetch all Fields that are added to the system
 
   // TODO: Fetch the real data from the backend
   return [

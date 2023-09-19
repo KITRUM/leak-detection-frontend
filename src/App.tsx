@@ -3,7 +3,7 @@ import SideNavigation from "@/scenes/SideNavigation";
 import Dashboard from "@/scenes/Dashboard";
 import About from "@/scenes/About";
 import Templates from "./scenes/Templates";
-import Platforms from "@/scenes/Platforms";
+import Fields from "@/scenes/Fields";
 import Sensors from "@/scenes/Sensors";
 import Sensor from "@/components/Sensor/Sensor";
 import CreateTemplate from "@/scenes/CreateTemplate";
@@ -23,7 +23,7 @@ export default function App() {
             path={INFRASTRUCTURE.HOME}
             index={true}
           />
-          <Route element={<Platforms />} path={INFRASTRUCTURE.PLATFORMS} />
+          <Route element={<Fields />} path={INFRASTRUCTURE.FIELDS} />
           <Route element={<Templates />} path={INFRASTRUCTURE.TEMPLATES} />
           <Route
             element={<CreateTemplate />}

@@ -1,4 +1,4 @@
-import { getTemplatesForPlatform } from "@/services/templates";
+import { getTemplatesForField } from "@/services/templates";
 import { useParams } from "react-router-dom";
 import TemplateCardList from "@/components/TemplateCardList/TemplateCardList";
 import { useEffect, useState } from "react";
@@ -9,13 +9,13 @@ import { Maybe } from "yup";
 
 const Templates = () => {
   const [templates, setTemplates] = useState<TTemplate[] | []>([]);
-  const { platformId } = useParams<string>();
+  const { fieldId } = useParams<string>();
 
   useEffect(() => {
     const fetchTemplates = async () => {
-      if (platformId) {
-        const templatesData: Maybe<TTemplate[]> = await getTemplatesForPlatform(
-          +platformId
+      if (fieldId) {
+        const templatesData: Maybe<TTemplate[]> = await getTemplatesForField(
+          +fieldId
         );
 
         if (templatesData) {
@@ -32,7 +32,7 @@ const Templates = () => {
       <div className="flex justify-between py-2 px-4">
         <LinkButton
           name="Create template"
-          slug={`/platforms/${platformId}/create-template`}
+          slug={`/fields/${fieldId}/create-template`}
         />
       </div>
       {templates ? (
