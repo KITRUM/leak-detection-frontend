@@ -11,6 +11,6 @@ export const connectAnomalyDetections = (sensorId: number) => {
 };
 
 export const connectSensorEvents = (sensorId: number) => {
-  const sensorEventsWebsocketUrl = `/sensors/${sensorId}/events`;
+  const sensorEventsWebsocketUrl = `/events/sensors/${sensorId}`;
   return new WebSocket(`${WEBSOCKET}${sensorEventsWebsocketUrl}`);
 };
