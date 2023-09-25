@@ -54,7 +54,7 @@ const CreateSensorForm = () => {
                   className="leading-2 mb-3 rounded-md border p-2 shadow focus:outline focus:outline-1 focus:outline-offset-2 focus:outline-cyan-500"
                 />
                 <label htmlFor="name" className="text-sm">
-                  Please enter the name of the template you want to create.
+                  Please enter the name of the sensor you want to create.
                 </label>
                 <ErrorMessage
                   name="name"

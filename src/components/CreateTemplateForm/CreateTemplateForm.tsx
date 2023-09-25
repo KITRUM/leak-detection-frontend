@@ -349,12 +349,12 @@ const CreateTemplate = () => {
             </div>
 
             <div className="w-full border-b border-gray-600 pt-3 text-xl">
-              Oceanographic Data Files
+              Oceanographic data files
             </div>
             <div className="grid grid-cols-2 gap-4 p-4">
               <div className="flex flex-col">
                 <label htmlFor="oceanographicData" className="p-2 text-sm">
-                  Waves File
+                  Waves file
                 </label>
                 <Field
                   type="file"
