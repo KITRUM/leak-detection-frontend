@@ -8,6 +8,7 @@ export const SystemEventsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const notify = (message: string, type: TSystemEventType) => {
+    console.log(message, type);
     switch (type) {
       case "alert_critical":
         return toast.error(message, {
