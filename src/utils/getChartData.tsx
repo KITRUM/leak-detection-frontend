@@ -3,7 +3,7 @@ import { AnomalyDetection, TimeSeriesData } from "@/types";
 enum ANOMALY_DEVIATION_COLORS {
   UNDEFINED = "#e1e1e1",
   CRITICAL = "red",
-  WARNING = "yellow",
+  WARNING = "red",
   OK = "green",
 }
 
